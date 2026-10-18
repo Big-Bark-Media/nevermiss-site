@@ -137,7 +137,7 @@
       '.go[disabled]{opacity:.6;cursor:wait}' +
       '.x{position:absolute;top:12px;right:12px;width:36px;height:36px;border:0;background:#f0f1f6;border-radius:50%;font-size:20px;line-height:1;cursor:pointer;color:#1a1a2e}' +
       '.f{font-size:12px;color:#6a6a80;margin:10px 0 0}' +
-      '.ok{text-align:center;padding:12px 0}.ok b{display:block;font-size:18px;margin-bottom:6px}' +
+      '.ok{text-align:center;padding:12px 0}.ok b{display:block;font-size:18px;margin-bottom:6px}.ok small{display:block;margin-top:12px;font-size:13px;opacity:.75;line-height:1.4}' +
       '.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}' +
       '@media(max-width:480px){.p{left:16px;right:16px;width:auto;bottom:80px}.l{bottom:16px;' + side + ':16px}}' +
       '@media(prefers-reduced-motion:no-preference){.p{animation:u .18s ease-out}@keyframes u{from{opacity:0;transform:translateY(8px)}}}' +
@@ -194,7 +194,9 @@
 
     function done() {
       body.innerHTML = '<div class="ok" role="status" tabindex="-1"><b>Thanks, message sent</b>' +
-        'We\'ve sent you a text. ' + '<span></span> will reply by text as soon as they can.</div>';
+        'We\'ve sent you a text. ' + '<span></span> will reply by text as soon as they can.' +
+        '<small>Not had a text in a few minutes? If you\'ve ever replied STOP to our texts, reply START to that number to ' +
+        'switch them back on, or we\'ll give you a call.</small></div>';
       body.querySelector('span').textContent = name;
       body.firstChild.focus();
     }
