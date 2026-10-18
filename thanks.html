@@ -58,7 +58,7 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
   <header class="top"><a href="index.html"><img src="assets/nevermiss-logo.png" alt="Never Miss a Lead by Big Bark Media" width="125" height="40"></a></header>
   <main>
     <h1>Thanks, we've got your details</h1>
-    <p class="lede">Here's what happens next. You don't need to do anything until we're in touch.</p>
+    <p class="lede">Here's what happens next. You don't need to do anything until we email you.</p>
     <ol>
       <li><div>
         <h2>We register your number</h2>
@@ -66,24 +66,28 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
         <p>If you're a sole trader or partnership, we'll also send you a secure link to upload photo ID for the check. Please don't send ID by email or WhatsApp.</p>
       </div></li>
       <li><div>
-        <h2>We book your set-up call</h2>
-        <p>We'll be in touch within one working day to book a 20-minute call. Together we'll check your texts and greeting, and set up your alerts and dashboard login.</p>
+        <h2>We set it up behind the scenes</h2>
+        <p>We write your texts and AI business info from your form, set up your alerts and, if you chose it, your WhatsApp Business profile. If we host your website, we add the button to it for you.</p>
+      </div></li>
+      <li><div>
+        <h2>You get your go-live email</h2>
+        <p>When your number's ready, we email you a link to your dashboard and a set of short setup videos (<a href="https://nevermiss.bigbark.media/setup/">nevermiss.bigbark.media/setup</a>). Sign in, add the dashboard to your Home Screen and turn on phone notifications.</p>
       </div></li>
       <li><div>
         <h2>You switch on your divert</h2>
-        <p>On the call we'll give you a short code to dial on your mobile, matched to your network. It sends calls you don't answer to Never Miss a Lead instead of your voicemail. For example: <code>**61*</code> then your new number, then <code>#</code>.</p>
+        <p>The email includes a short code to dial on your mobile, matched to your network, and the "Divert your missed calls" video shows you how. It sends calls you don't answer to Never Miss a Lead instead of your voicemail. For example: <code>**61*</code> then your new number, then <code>#</code>.</p>
         <p>Your phone still rings first, as normal. You can switch the divert off any time with <code>##61#</code>.</p>
       </div></li>
       <li><div>
-        <h2>We test it together</h2>
-        <p>We ring you, you don't answer, and we check the text arrives and your alert comes through. Then you're live, and that's when your 14-day free trial starts.</p>
+        <h2>You test it with a missed call</h2>
+        <p>Ask someone to ring your mobile and don't answer. Check the text reaches them and your alert comes through, then check your business info in the dashboard. Your 14-day free trial starts when your number goes live.</p>
       </div></li>
     </ol>
     <div class="box">
-      <p><strong>Questions in the meantime?</strong> Message us, or book your set-up call now if you'd like to pick a time.</p>
+      <p><strong>Questions or stuck?</strong> We help by email and WhatsApp (we don't do phone support), so you'll always have the answer in writing. Message us on WhatsApp at 07822 882162 or email <a href="mailto:info@bigbark.media">info@bigbark.media</a>.</p>
       <div class="btns">
         <a class="btn dark" id="wa" href="https://wa.me/447822882162">Message us on WhatsApp</a>
-        <a class="btn" id="book" href="https://calendly.com/craig-od/big-bark-media-consultation-call">Book your set-up call</a>
+        <a class="btn" id="email" href="mailto:info@bigbark.media">Email us</a>
       </div>
     </div>
   </main>
@@ -97,7 +101,7 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
 <script>
 var C = window.NMAL_CONFIG || {};
 if (C.whatsappUrl) document.getElementById('wa').href = C.whatsappUrl;
-if (C.bookCallUrl) document.getElementById('book').href = C.bookCallUrl;
+if (C.email) document.getElementById('email').href = 'mailto:' + C.email;
 </script>
 </body>
 </html>
