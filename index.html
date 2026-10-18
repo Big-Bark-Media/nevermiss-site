@@ -279,13 +279,16 @@
         <p class="for">Every missed caller gets a text from you. You get the alert.</p>
         <div class="amount">£49<small> / month</small></div>
         <p class="setup">After your free trial. Or skip the trial: £99 setup.</p>
-        <ul>
+        <details class="incl" open>
+          <summary>What's included</summary>
+          <ul>
           <li>Instant text to every missed mobile caller</li>
           <li>Voicemail recorded and sent to you</li>
           <li>Text and email alert for every missed call</li>
           <li>Reply from your phone or dashboard</li>
           <li>Website "Text us" button and monthly stats</li>
-        </ul>
+          </ul>
+        </details>
         <div class="actions">
           <a class="btn btn-go" data-link="textback_trial" href="#">Start free trial</a>
           <p class="trial-note">Card required. £0 today.</p>
@@ -298,13 +301,16 @@
         <p class="for">Everything in Text-Back, plus an AI assistant that replies to their texts for you.</p>
         <div class="amount">£99<small> / month</small></div>
         <p class="setup">After your free trial. Or skip the trial: £99 setup.</p>
-        <ul>
+        <details class="incl" open>
+          <summary>What's included</summary>
+          <ul>
           <li>Replies to customers' texts 24/7, in seconds</li>
           <li>Uses your own prices, classes and area</li>
           <li>Gets their details and books a call-back</li>
           <li>Hands bites and complaints straight to you</li>
           <li>Everything in Text-Back</li>
-        </ul>
+          </ul>
+        </details>
         <div class="actions">
           <a class="btn btn-go" data-link="smart_trial" href="#">Start free trial</a>
           <p class="trial-note">Card required. £0 today.</p>
@@ -316,12 +322,15 @@
         <p class="for">Everything in Smart Text, plus a friendly AI voice that answers the calls you can't.</p>
         <div class="amount">£149<small> / month</small></div>
         <p class="setup">Includes 150 AI call minutes, then 30p a minute. Or skip the trial: £249 setup.</p>
-        <ul>
+        <details class="incl" open>
+          <summary>What's included</summary>
+          <ul>
           <li>Answers the calls you miss in a friendly British voice</li>
           <li>Takes their name, their dog, what they need and when to call back</li>
           <li>Sends you a written summary of every call</li>
           <li>Everything in Smart Text</li>
-        </ul>
+          </ul>
+        </details>
         <div class="actions">
           <a class="btn btn-go" data-link="ai_trial" href="#">Start free trial</a>
           <p class="trial-note">Card required. £0 today.</p>
@@ -519,6 +528,13 @@
   });
   select(tabs[0]);
   if(location.hash==='#smart-text') select(tabs[1]);
+})();
+</script>
+<script>
+(function(){
+  var mq=window.matchMedia('(max-width:820px)'), ds=[].slice.call(document.querySelectorAll('.plan .incl'));
+  function apply(){ ds.forEach(function(d){ d.open=!mq.matches; }); }
+  apply(); if(mq.addEventListener) mq.addEventListener('change',apply); else mq.addListener(apply);
 })();
 </script>
 </body>

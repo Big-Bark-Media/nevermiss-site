@@ -304,3 +304,13 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px}
 .st-tag svg{color:#FF7AC0}
 @media (max-width:900px){#panel-smart .see-grid{grid-template-columns:1fr;justify-items:center}.st-phone{width:100%;max-width:380px}.summary-card{width:100%;max-width:520px}}
 @media (max-width:480px){.tabs{display:flex}.tabs [role=tab]{flex:1;padding:11px 10px;font-size:14px}.tabs [role=tab] span{display:none}}
+
+/* ---- Plan feature lists: toggle on mobile ---- */
+.incl>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;padding:12px 16px;margin:0 0 18px;border:1px solid var(--line);border-radius:14px;font:600 15px/1.2 var(--display);color:var(--navy)}
+.incl>summary::-webkit-details-marker{display:none}
+.incl>summary::after{content:"";width:9px;height:9px;border-right:2.5px solid var(--magenta);border-bottom:2.5px solid var(--magenta);transform:rotate(45deg) translateY(-3px);transition:transform .2s}
+.incl[open]>summary::after{transform:rotate(-135deg) translate(-2px,-1px)}
+.incl[open]>summary{margin-bottom:16px}
+.plan.featured .incl>summary{border-color:rgba(255,255,255,.2);color:var(--white)}
+.incl>summary:focus-visible{outline:3px solid var(--magenta);outline-offset:2px}
+@media (min-width:821px){.incl>summary{display:none}}
