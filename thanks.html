@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thanks, we've got your details | Never Miss a Lead</title>
+<meta name="description" content="What happens next with your Never Miss a Lead set-up.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#151518">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Rubik:wght@400;500&display=swap" rel="stylesheet">
+<script src="config.js"></script>
+<style>
+:root{--ink:#1D274E;--paper:#F8F8F8;--white:#fff;--hivis:#FFE3F1;--grass:#E6007E;--line:#E3E5EF;--muted:#5F6890;
+--display:"Poppins","Segoe UI",system-ui,sans-serif;--body:"Rubik",system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--body)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.wrap{max-width:760px;margin:0 auto;padding:0 clamp(16px,4vw,32px)}
+.top{padding:16px 0}.top img{height:36px;width:auto}
+h1{font:800 clamp(36px,7vw,60px)/1 var(--display);letter-spacing:-.03em;margin:24px 0 16px}
+.lede{font-size:19px;color:var(--muted);margin:0 0 40px;max-width:52ch}
+ol{list-style:none;margin:0;padding:0;counter-reset:s;border-top:2px solid var(--ink)}
+li{counter-increment:s;display:grid;grid-template-columns:48px 1fr;gap:18px;padding:24px 0;border-bottom:1px solid var(--line)}
+li::before{content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;font:800 20px var(--display)}
+h2{font:800 22px/1.2 var(--display);margin:6px 0 6px;letter-spacing:-.01em}
+li p{margin:0;color:var(--muted)}
+li p+p{margin-top:8px}
+code{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:.95em;color:var(--ink)}
+.box{margin:36px 0 64px;background:var(--hivis);border:2px solid var(--ink);border-radius:22px;padding:22px 24px}
+.box p{margin:0 0 14px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;min-height:48px;padding:12px 22px;border-radius:999px;border:2px solid var(--ink);font-weight:700;text-decoration:none;background:var(--white)}
+.btn.dark{background:var(--ink);color:#fff}
+
+/* Big Bark Media skin (matches bigbark.media) */
+h1,h2,h3,summary,legend{font-family:"Poppins","Segoe UI",system-ui,sans-serif!important;letter-spacing:0!important;color:#1D274E}
+h1{font-weight:700!important}
+.btn{font-family:"Poppins","Segoe UI",system-ui,sans-serif!important;font-weight:600!important;border-radius:30px!important;border-color:#E6007E!important;color:#111}
+.btn-go,.btn.dark{background:#E6007E!important;color:#fff!important;border-color:#E6007E!important;box-shadow:none!important}
+.btn-go:hover,.btn.dark:hover{background:#B8006A!important;border-color:#B8006A!important}
+input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-color:#E6007E}
+:focus-visible{outline-color:#E6007E!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><a href="index.html"><img src="assets/nevermiss-logo.png" alt="Never Miss a Lead by Big Bark Media" width="125" height="40"></a></header>
+  <main>
+    <h1>Thanks, we've got your details</h1>
+    <p class="lede">Here's what happens next. You don't need to do anything until we're in touch.</p>
+    <ol>
+      <li><div>
+        <h2>We register your number</h2>
+        <p>We submit your business details for the UK number checks that Ofcom requires. This can take a few working days. We'll tell you if anything needs correcting.</p>
+      </div></li>
+      <li><div>
+        <h2>We book your set-up call</h2>
+        <p>We'll be in touch within one working day to book a 20-minute call. Together we'll check your texts and greeting, and set up your alerts and dashboard login.</p>
+      </div></li>
+      <li><div>
+        <h2>You switch on your divert</h2>
+        <p>On the call we'll give you a short code to dial on your mobile, matched to your network. It sends calls you don't answer to Never Miss a Lead instead of your voicemail. For example: <code>**61*</code> then your new number, then <code>#</code>.</p>
+        <p>Your phone still rings first, as normal. You can switch the divert off any time with <code>##61#</code>.</p>
+      </div></li>
+      <li><div>
+        <h2>We test it together</h2>
+        <p>We ring you, you don't answer, and we check the text arrives and your alert comes through. Then you're live.</p>
+      </div></li>
+    </ol>
+    <div class="box">
+      <p><strong>Questions in the meantime?</strong> Message us, or book your set-up call now if you'd like to pick a time.</p>
+      <div class="btns">
+        <a class="btn dark" id="wa" href="https://wa.me/447822882162">Message us on WhatsApp</a>
+        <a class="btn" id="book" href="https://calendly.com/craig-od/big-bark-media-consultation-call">Book your set-up call</a>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+var C = window.NMAL_CONFIG || {};
+if (C.whatsappUrl) document.getElementById('wa').href = C.whatsappUrl;
+if (C.bookCallUrl) document.getElementById('book').href = C.bookCallUrl;
+</script>
+</body>
+</html>

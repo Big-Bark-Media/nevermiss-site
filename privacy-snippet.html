@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy wording for clients | Never Miss a Lead</title>
+<meta name="description" content="Template paragraph for Never Miss a Lead clients to add to their privacy policy. Not legal advice.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Rubik:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1D274E;--paper:#F8F8F8;--white:#fff;--hivis:#FFE3F1;--line:#E3E5EF;--muted:#5F6890;--grass:#E6007E}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 "Rubik",system-ui,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:32px clamp(16px,4vw,32px) 64px}
+h1{font:800 clamp(32px,6vw,48px)/1.05 "Poppins",system-ui,sans-serif;letter-spacing:-.02em;margin:0 0 14px}
+.warn{background:var(--hivis);border:2px solid var(--ink);border-radius:14px;padding:12px 16px;font-weight:600;margin:0 0 20px}
+ol{padding-left:22px;color:var(--muted)}
+.snippet{background:var(--white);border:2px solid var(--ink);border-radius:20px;padding:24px;margin:24px 0 14px}
+.snippet h2{font-size:20px;margin:0 0 10px}
+.snippet p{margin:0 0 12px}
+.snippet p:last-child{margin:0}
+mark{background:#fff3bf;padding:0 3px;border-radius:3px}
+button{font:700 16px "Rubik",sans-serif;min-height:48px;padding:12px 22px;border-radius:999px;border:2px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer}
+button:focus-visible{outline:3px solid var(--hivis);outline-offset:2px}
+#status{margin-left:12px;color:var(--grass);font-weight:600}
+a{color:inherit}
+
+/* Big Bark Media skin (matches bigbark.media) */
+h1,h2,h3,summary,legend{font-family:"Poppins","Segoe UI",system-ui,sans-serif!important;letter-spacing:0!important;color:#1D274E}
+h1{font-weight:700!important}
+.btn{font-family:"Poppins","Segoe UI",system-ui,sans-serif!important;font-weight:600!important;border-radius:30px!important;border-color:#E6007E!important;color:#111}
+.btn-go,.btn.dark{background:#E6007E!important;color:#fff!important;border-color:#E6007E!important;box-shadow:none!important}
+.btn-go:hover,.btn.dark:hover{background:#B8006A!important;border-color:#B8006A!important}
+input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-color:#E6007E}
+:focus-visible{outline-color:#E6007E!important}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Privacy policy wording for Never Miss a Lead</h1>
+  <p class="warn">Template, not legal advice. Check it fits your business and your existing privacy policy, and take advice if you're unsure.</p>
+  <ol>
+    <li>Replace the <mark>highlighted</mark> parts.</li>
+    <li>Paste the section into your privacy policy, for example under "How we use your information".</li>
+    <li>Delete the AI paragraph if you're on the Text-Back plan.</li>
+  </ol>
+
+  <div class="snippet" id="snippet">
+    <h2>Calls, texts and voicemail</h2>
+    <p>When you call <mark>[Business name]</mark> and we can't answer, our call-handling service records your phone number, the time of your call and, if you choose to leave one, your voicemail message. If you called from a UK mobile, we send you one text message so you can tell us what you need. If you reply, or send us a message through the "Text us" button on our website, we keep that conversation so we can respond to your enquiry. Callers are told at the start of the voicemail greeting that messages are recorded.</p>
+    <p>If our AI receptionist answers your call, the call is recorded and transcribed, and a written summary is created so we can follow up with you. The AI receptionist only takes a message; it does not make decisions about you.</p>
+    <p>We use this information to respond to your enquiry. Our legal basis is our legitimate interest in responding to people who contact us, or taking steps at your request before entering into a contract with you. We will only text you about your enquiry. You can reply STOP at any time and we won't text you again.</p>
+    <p>This service is provided for us by Big Bark Media (bigbark.media), who act as our data processor under a written agreement and only use your information on our instructions. They use trusted sub-processors to deliver calls, texts, storage and transcription, some of which may process data outside the UK under appropriate safeguards. Call records, messages, voicemails and call summaries are deleted after 12 months.</p>
+    <p>To ask about or access the information we hold about you, contact <mark>[your email address]</mark>.</p>
+  </div>
+  <button type="button" id="copy">Copy wording</button><span id="status" role="status"></span>
+  <p style="margin-top:28px;color:var(--muted);font-size:15px">Questions? Email <a href="mailto:info@bigbark.media">info@bigbark.media</a>.</p>
+</main>
+<script>
+document.getElementById('copy').addEventListener('click', function(){
+  var el = document.getElementById('snippet');
+  var text = el.innerText;
+  var ok = function(){ document.getElementById('status').textContent = 'Copied'; };
+  if (navigator.clipboard) navigator.clipboard.writeText(text).then(ok, function(){ sel(); });
+  else sel();
+  function sel(){ var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); document.getElementById('status').textContent = 'Selected. Press Ctrl+C or Cmd+C to copy.'; }
+});
+</script>
+</body>
+</html>

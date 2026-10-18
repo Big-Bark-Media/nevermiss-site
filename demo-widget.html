@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paws &amp; Progress Dog Training (widget demo)</title>
+<meta name="description" content="Demo: the Never Miss a Lead 'Text us' widget on an example dog trainer's website.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Deliberately a different look from the sales site: this is an example client's own website. */
+:root{--bark:#3b2a1e;--cream:#fbf6ee;--moss:#5a6b3a;--sand:#ead9bf;--muted:#6b5a4c}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--bark);font:400 17px/1.6 "Nunito Sans",system-ui,sans-serif}
+a{color:inherit}
+.banner{margin:0;background:#16163a;color:#fff;font-size:14px;text-align:center;padding:8px 16px}
+.banner a{color:#ffd43b;font-weight:700}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:18px;padding-bottom:18px;gap:16px}
+.logo{font:700 22px "Fraunces",Georgia,serif;display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo svg{color:var(--moss)}
+nav{display:flex;gap:22px;font-weight:600;font-size:15px}
+nav a{text-decoration:none}
+@media(max-width:700px){nav{display:none}}
+.tel{font-weight:700;text-decoration:none;white-space:nowrap}
+.hero{padding:48px 0 64px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+h1{font:700 clamp(36px,5.5vw,58px)/1.05 "Fraunces",Georgia,serif;margin:0 0 18px;letter-spacing:-.01em}
+.hero p{font-size:19px;color:var(--muted);margin:0 0 26px;max-width:46ch}
+.btn{display:inline-block;background:var(--moss);color:#fff;padding:14px 24px;border-radius:10px;font-weight:700;text-decoration:none}
+.pic{aspect-ratio:4/5;border-radius:200px 200px 24px 24px;background:radial-gradient(circle at 50% 38%,#c9a77c 0 22%,transparent 23%),radial-gradient(ellipse at 50% 80%,#b48a5a 0 40%,transparent 41%),var(--sand);position:relative;overflow:hidden}
+.pic::after{content:"Photo of a happy spaniel";position:absolute;bottom:14px;left:0;right:0;text-align:center;font-size:13px;color:var(--muted)}
+@media(max-width:760px){.hero .wrap{grid-template-columns:1fr}.pic{max-width:320px;aspect-ratio:1}}
+.services{background:#fff;padding:56px 0}
+h2{font:700 32px "Fraunces",Georgia,serif;margin:0 0 24px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cards div{background:var(--cream);border-radius:16px;padding:22px}
+.cards h3{margin:0 0 6px;font-size:19px}
+.cards p{margin:0;color:var(--muted);font-size:15.5px}
+@media(max-width:760px){.cards{grid-template-columns:1fr}}
+footer{padding:36px 0 120px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<p class="banner">Demo of the Never Miss a Lead "Text us" button on an example client website. Nothing is sent. <a href="index.html">Back to Never Miss a Lead</a></p>
+<header>
+  <div class="wrap">
+    <a class="logo" href="#"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="6" cy="9" r="2.2"/><circle cx="10" cy="5.5" r="2.2"/><circle cx="14" cy="5.5" r="2.2"/><circle cx="18" cy="9" r="2.2"/><path d="M12 11c-3 0-6 4-6 7 0 2 1.6 3 3 3 1.2 0 2-.6 3-.6s1.8.6 3 .6c1.4 0 3-1 3-3 0-3-3-7-6-7z"/></svg>Paws &amp; Progress</a>
+    <nav aria-label="Main"><a href="#">1-2-1 Training</a><a href="#">Reactive Dogs</a><a href="#">Puppy Classes</a><a href="#">About</a></nav>
+    <a class="tel" href="#">07700 900 123</a>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Calmer walks start here.</h1>
+        <p>Kind, force-free dog training in the Fens. 1-2-1 sessions for reactive dogs, puppy classes and loose-lead walking.</p>
+        <a class="btn" href="#">Book a free 15-minute chat</a>
+      </div>
+      <div class="pic" role="img" aria-label="Placeholder for a photo of a spaniel"></div>
+    </div>
+  </section>
+  <section class="services">
+    <div class="wrap">
+      <h2>How I can help</h2>
+      <div class="cards">
+        <div><h3>Reactive dogs</h3><p>Barking, lunging or pulling at other dogs? We'll work on it at your dog's pace.</p></div>
+        <div><h3>Puppy classes</h3><p>Small groups on Saturday mornings. Socialisation, recall and settling.</p></div>
+        <div><h3>Loose-lead walking</h3><p>Three 1-2-1 sessions to make walks something you both enjoy.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap">Paws &amp; Progress Dog Training is a made-up business for this demo.</div></footer>
+
+<script src="widget/textback.js" data-key="demo" data-name="Paws &amp; Progress" data-color="#5a6b3a" async></script>
+</body>
+</html>

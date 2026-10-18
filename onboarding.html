@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Set up Never Miss a Lead | Big Bark Media</title>
+<meta name="description" content="Tell us about your business so we can set up your Never Miss a Lead number, texts and alerts.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#151518">
+<meta property="og:title" content="Set up Never Miss a Lead">
+<meta property="og:description" content="Your onboarding form for Never Miss a Lead by Big Bark Media.">
+<meta property="og:image" content="https://bigbark.media/wp-content/uploads/2024/03/Big-Bark-Media_150324-01-2.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Rubik:wght@400;500&display=swap" rel="stylesheet">
+<script src="config.js"></script>
+<style>
+:root{--ink:#1D274E;--ink-2:#2B3668;--paper:#F8F8F8;--white:#fff;--hivis:#FFE3F1;--hivis-deep:#FFC9E3;--grass:#E6007E;--signal:#c8323a;--line:#E3E5EF;--muted:#5F6890;
+--display:"Poppins","Segoe UI",system-ui,sans-serif;--body:"Rubik",system-ui,-apple-system,"Segoe UI",sans-serif}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16.5px/1.55 var(--body);overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.wrap{max-width:880px;margin:0 auto;padding:0 clamp(16px,4vw,32px)}
+.top{padding:16px 0;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top img{height:36px;width:auto}
+.top .help{font-size:14.5px;font-weight:600}
+h1,h2{font-family:var(--display);letter-spacing:-.02em;line-height:1.05;margin:0}
+h1{font-size:clamp(34px,6vw,56px);font-weight:800;max-width:16ch}
+.intro{padding:20px 0 28px}
+.intro p{color:var(--muted);max-width:60ch;margin:16px 0 0;font-size:18px}
+.why-box{margin-top:22px;background:var(--white);border-left:5px solid var(--grass);border-radius:0 14px 14px 0;padding:16px 18px;font-size:15.5px;max-width:64ch}
+.why-box p{margin:0;color:var(--ink);font-size:15.5px}
+
+/* progress (mobile only) */
+.progress{display:none;gap:6px;margin:0 0 18px}
+.progress span{flex:1;height:6px;border-radius:3px;background:var(--line)}
+.progress span.done{background:var(--grass)}
+.step-label{display:none;font-weight:700;color:var(--grass);margin:0 0 8px;font-size:15px}
+
+form{display:grid;gap:22px;padding-bottom:64px}
+fieldset{border:2px solid var(--ink);border-radius:24px;padding:26px 28px 28px;margin:0;background:var(--white);min-width:0}
+legend{font:800 24px var(--display);letter-spacing:-.01em;padding:0 8px;margin-left:-8px}
+.sub{color:var(--muted);margin:2px 0 18px;font-size:15.5px;max-width:62ch}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+.full{grid-column:1/-1}
+@media (max-width:640px){.grid{grid-template-columns:1fr}fieldset{padding:20px 18px 22px;border-radius:20px}}
+label,.qlabel{display:block;font-weight:600;margin-bottom:6px}
+.opt{font-weight:400;color:var(--muted)}
+input[type=text],input[type=email],input[type=tel],input[type=url],select,textarea{width:100%;font:500 16.5px var(--body);color:var(--ink);background:var(--white);border:2px solid var(--line);border-radius:12px;padding:12px 14px;min-height:50px}
+textarea{min-height:96px;resize:vertical;line-height:1.45}
+input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:none;box-shadow:0 0 0 3px rgba(255,212,59,.7)}
+[aria-invalid=true]{border-color:var(--signal)!important}
+.err{color:var(--signal);font-size:14.5px;font-weight:600;margin:6px 0 0;min-height:0}
+.err:empty{display:none}
+.hint{color:var(--muted);font-size:14.5px;margin:6px 0 0}
+.why{font-size:14.5px;color:var(--ink-2);margin:6px 0 0}
+.choices{display:flex;flex-wrap:wrap;gap:10px}
+.choice{position:relative}
+.choice input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.choice span{display:block;border:2px solid var(--line);border-radius:999px;padding:10px 16px;font-weight:600;min-height:46px}
+.choice input:checked+span{border-color:var(--ink);background:var(--hivis)}
+.choice input:focus-visible+span{outline:3px solid var(--ink);outline-offset:2px}
+.check{display:grid;grid-template-columns:24px 1fr;gap:12px;align-items:start;font-weight:500}
+.check input{width:22px;height:22px;margin:2px 0 0;accent-color:var(--grass)}
+.counter{float:right;font-weight:400;color:var(--muted);font-size:14px}
+.preview{margin-top:10px;background:var(--paper);border-radius:14px;padding:12px 14px;font-size:15px}
+.preview b{display:block;font-size:13px;color:var(--muted);margin-bottom:4px}
+
+.nav{display:flex;gap:12px;justify-content:space-between;margin-top:22px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 26px;border-radius:999px;font:700 17px var(--body);border:2px solid var(--ink);cursor:pointer;background:transparent;color:var(--ink);text-decoration:none}
+.btn-go{background:var(--hivis);box-shadow:0 3px 0 var(--ink)}
+.btn-go:hover{background:var(--hivis-deep)}
+.btn[disabled]{opacity:.6;cursor:wait}
+.mobile-nav{display:none}
+.submit-row{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.submit-row p{margin:0;color:var(--muted);font-size:14.5px;flex:1;min-width:220px}
+.formerr{background:#fde8e9;border:2px solid var(--signal);border-radius:14px;padding:14px 16px;font-weight:600}
+.formerr:empty{display:none}
+
+.fallback{border:2px solid var(--ink);border-radius:24px;background:var(--hivis);padding:26px 24px}
+.fallback h2{font-size:28px;margin-bottom:10px}
+.fallback p{margin:0 0 16px}
+.fallback .btn{background:var(--ink);color:var(--white)}
+
+/* multi-step on mobile */
+@media (max-width:760px){
+  .js .progress,.js .step-label{display:flex}
+  .js .step-label{display:block}
+  .js fieldset.step{display:none}
+  .js fieldset.step.active{display:block}
+  .js .mobile-nav{display:flex}
+  .js .final-submit{display:none}
+  .js .final-submit.show{display:flex}
+  .nav .btn{flex:1}
+}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+[hidden]{display:none!important}
+.fallback{margin-bottom:24px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* Big Bark Media skin (matches bigbark.media) */
+h1,h2,h3,summary,legend{font-family:"Poppins","Segoe UI",system-ui,sans-serif!important;letter-spacing:0!important;color:#1D274E}
+h1{font-weight:700!important}
+.btn{font-family:"Poppins","Segoe UI",system-ui,sans-serif!important;font-weight:600!important;border-radius:30px!important;border-color:#E6007E!important;color:#111}
+.btn-go,.btn.dark{background:#E6007E!important;color:#fff!important;border-color:#E6007E!important;box-shadow:none!important}
+.btn-go:hover,.btn.dark:hover{background:#B8006A!important;border-color:#B8006A!important}
+input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-color:#E6007E}
+:focus-visible{outline-color:#E6007E!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a href="index.html" aria-label="Never Miss a Lead home"><img src="assets/nevermiss-logo.png" alt="Never Miss a Lead by Big Bark Media" width="125" height="40"></a>
+    <a class="help" id="help-wa" href="https://wa.me/447822882162">Stuck? Message us</a>
+  </header>
+
+  <div class="intro">
+    <h1>Let's get your number set up</h1>
+    <p>This takes about 5 minutes. We use it to register your number, write your texts and set up your alerts. We'll then book a short call to switch everything on and test it with you.</p>
+    <div class="why-box"><p><strong>Why we ask for business details:</strong> Ofcom, the UK phone regulator, requires the business behind every phone number to be identified and verified. Our phone provider checks these details before your number can go live, so please make sure they match your official records.</p></div>
+  </div>
+
+  <div id="fallback" class="fallback" hidden tabindex="-1">
+    <h2>We couldn't send your form just now</h2>
+    <p>Nothing is lost. Tap the button below to send your answers to us by email instead. Your email app will open with everything filled in. Just press send.</p>
+    <p><a class="btn" id="mailto" href="mailto:info@bigbark.media">Email my answers to Big Bark</a></p>
+    <p style="margin:0;font-size:15px">Or message us on <a id="fb-wa" href="https://wa.me/447822882162">WhatsApp</a> and we'll sort it.</p>
+  </div>
+
+  <form id="onb" novalidate>
+    <div class="progress" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+    <p class="step-label" id="step-label" aria-live="polite">Step 1 of 5</p>
+    <div class="formerr" id="formerr" role="alert"></div>
+
+    <fieldset class="step active" data-step="1">
+      <legend>Your business</legend>
+      <p class="sub">As registered, for example on Companies House or with HMRC.</p>
+      <div class="grid">
+        <div class="full">
+          <label for="business_name">Business name</label>
+          <input type="text" id="business_name" name="business_name" autocomplete="organization" required>
+          <p class="hint">This name goes at the start of every text we send for you.</p>
+          <p class="err" id="business_name-err"></p>
+        </div>
+        <div class="full" role="radiogroup" aria-labelledby="entity-l" aria-describedby="entity-why">
+          <span class="qlabel" id="entity-l">What type of business is it?</span>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="legal_entity_type" value="limited_company" required><span>Limited company</span></label>
+            <label class="choice"><input type="radio" name="legal_entity_type" value="sole_trader"><span>Sole trader</span></label>
+            <label class="choice"><input type="radio" name="legal_entity_type" value="partnership"><span>Partnership</span></label>
+          </div>
+          <p class="why" id="entity-why">Needed for the Ofcom business verification on your number.</p>
+          <p class="err" id="legal_entity_type-err"></p>
+        </div>
+        <div class="full" id="ch-wrap" hidden>
+          <label for="companies_house_number">Companies House number</label>
+          <input type="text" id="companies_house_number" name="companies_house_number" inputmode="text" autocomplete="off" maxlength="10" placeholder="e.g. 12345678 or SC123456">
+          <p class="why">Our phone provider checks this against the Companies House register.</p>
+          <p class="err" id="companies_house_number-err"></p>
+        </div>
+        <div class="full">
+          <label for="address_line1">Business address</label>
+          <input type="text" id="address_line1" name="address_line1" autocomplete="address-line1" required placeholder="Building and street">
+          <p class="err" id="address_line1-err"></p>
+        </div>
+        <div class="full">
+          <label for="address_line2" class="sr">Address line 2</label>
+          <input type="text" id="address_line2" name="address_line2" autocomplete="address-line2" placeholder="Address line 2 (optional)">
+        </div>
+        <div>
+          <label for="address_town">Town or city</label>
+          <input type="text" id="address_town" name="address_town" autocomplete="address-level2" required>
+          <p class="err" id="address_town-err"></p>
+        </div>
+        <div>
+          <label for="address_postcode">Postcode</label>
+          <input type="text" id="address_postcode" name="address_postcode" autocomplete="postal-code" autocapitalize="characters" required>
+          <p class="err" id="address_postcode-err"></p>
+        </div>
+        <div class="full"><p class="why" style="margin-top:-8px">A UK address is required to hold a UK number. If you work from home, use your home address. It isn't shown to callers.</p></div>
+        <div class="full">
+          <label for="website">Website <span class="opt">(optional)</span></label>
+          <input type="url" id="website" name="website" autocomplete="url" inputmode="url" placeholder="yourbusiness.co.uk">
+          <p class="err" id="website-err"></p>
+        </div>
+      </div>
+      <div class="nav mobile-nav"><span></span><button type="button" class="btn btn-go" data-next>Next</button></div>
+    </fieldset>
+
+    <fieldset class="step" data-step="2">
+      <legend>You and your alerts</legend>
+      <p class="sub">Where we send missed-call alerts, and who's authorised to set up the number.</p>
+      <div class="grid">
+        <div class="full">
+          <label for="owner_name">Your name</label>
+          <input type="text" id="owner_name" name="owner_name" autocomplete="name" required>
+          <p class="err" id="owner_name-err"></p>
+        </div>
+        <div>
+          <label for="owner_mobile">Your mobile</label>
+          <input type="tel" id="owner_mobile" name="owner_mobile" autocomplete="tel" inputmode="tel" required placeholder="07123 456789">
+          <p class="hint">We send your text alerts here.</p>
+          <p class="err" id="owner_mobile-err"></p>
+        </div>
+        <div>
+          <label for="alert_email">Email for alerts</label>
+          <input type="email" id="alert_email" name="alert_email" autocomplete="email" required>
+          <p class="hint">Also your dashboard login.</p>
+          <p class="err" id="alert_email-err"></p>
+        </div>
+        <div class="full">
+          <label class="check"><input type="checkbox" id="rep_same" checked> <span>I'm the person authorised to act for this business</span></label>
+          <p class="why">Ofcom rules require a named person who can confirm the number is being set up on the business's behalf.</p>
+        </div>
+        <div id="rep-wrap" class="full grid" hidden>
+          <div class="full">
+            <label for="rep_name">Authorised representative's name</label>
+            <input type="text" id="rep_name" name="rep_name" autocomplete="off">
+            <p class="err" id="rep_name-err"></p>
+          </div>
+          <div>
+            <label for="rep_email">Their email</label>
+            <input type="email" id="rep_email" name="rep_email" autocomplete="off">
+            <p class="err" id="rep_email-err"></p>
+          </div>
+          <div>
+            <label for="rep_mobile">Their mobile</label>
+            <input type="tel" id="rep_mobile" name="rep_mobile" inputmode="tel" autocomplete="off">
+            <p class="err" id="rep_mobile-err"></p>
+          </div>
+        </div>
+      </div>
+      <div class="nav mobile-nav"><button type="button" class="btn" data-back>Back</button><button type="button" class="btn btn-go" data-next>Next</button></div>
+    </fieldset>
+
+    <fieldset class="step" data-step="3">
+      <legend>Your phone set-up</legend>
+      <p class="sub">So we can send you the right divert codes for your phone.</p>
+      <div class="grid">
+        <div class="full" role="group" aria-labelledby="calls-l">
+          <span class="qlabel" id="calls-l">Which number do clients call you on now?</span>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="current_number_type" value="mobile" required><span>A mobile</span></label>
+            <label class="choice"><input type="radio" name="current_number_type" value="landline"><span>A landline</span></label>
+            <label class="choice"><input type="radio" name="current_number_type" value="both"><span>Both</span></label>
+          </div>
+          <p class="err" id="current_number_type-err"></p>
+        </div>
+        <div class="full">
+          <label for="current_numbers">The number(s) on your website, van, cards and Google listing</label>
+          <input type="text" id="current_numbers" name="current_numbers" inputmode="tel" required placeholder="07123 456789">
+          <p class="err" id="current_numbers-err"></p>
+        </div>
+        <div class="full">
+          <label for="mobile_network">Your mobile network</label>
+          <select id="mobile_network" name="mobile_network" required>
+            <option value="">Choose your network</option>
+            <option value="ee">EE</option>
+            <option value="o2">O2</option>
+            <option value="vodafone_contract">Vodafone (pay monthly)</option>
+            <option value="vodafone_payg">Vodafone (pay as you go)</option>
+            <option value="three">Three</option>
+            <option value="giffgaff">giffgaff</option>
+            <option value="tesco">Tesco Mobile</option>
+            <option value="sky">Sky Mobile</option>
+            <option value="bt">BT Mobile</option>
+            <option value="id">iD Mobile</option>
+            <option value="voxi">VOXI</option>
+            <option value="smarty">SMARTY</option>
+            <option value="lebara">Lebara</option>
+            <option value="other">Other</option>
+            <option value="unsure">Not sure</option>
+          </select>
+          <p class="hint" id="vf-note" hidden>Vodafone pay as you go doesn't allow call diverts. No problem: we'll give you a new number to use on your website and ads instead.</p>
+          <p class="err" id="mobile_network-err"></p>
+        </div>
+      </div>
+      <div class="nav mobile-nav"><button type="button" class="btn" data-back>Back</button><button type="button" class="btn btn-go" data-next>Next</button></div>
+    </fieldset>
+
+    <fieldset class="step" data-step="4">
+      <legend>What callers hear and read</legend>
+      <p class="sub">Leave these as they are if you're happy. You can change them later in your dashboard.</p>
+      <div class="grid">
+        <div class="full">
+          <label for="booking_url">Booking link <span class="opt">(optional)</span></label>
+          <input type="url" id="booking_url" name="booking_url" inputmode="url" placeholder="e.g. calendly.com/yourname">
+          <p class="hint">We add this to the text so callers can book straight away.</p>
+          <p class="err" id="booking_url-err"></p>
+        </div>
+        <div class="full">
+          <label for="autotext_wording">Text to missed callers <span class="counter" id="at-count" aria-live="polite"></span></label>
+          <textarea id="autotext_wording" name="autotext_wording" maxlength="300">Hi, it's {business_name}. Sorry we missed your call. How can we help? {booking_line}Reply STOP to opt out.</textarea>
+          <p class="hint">Keep "Reply STOP to opt out". It's required, and we always add your business name.</p>
+          <div class="preview" aria-live="polite"><b>Preview</b><span id="at-preview"></span></div>
+          <p class="err" id="autotext_wording-err"></p>
+        </div>
+        <div class="full">
+          <label for="greeting_wording">Voicemail greeting</label>
+          <textarea id="greeting_wording" name="greeting_wording" maxlength="300">Sorry we missed your call. We've just sent you a text, or leave a short message after the tone. Messages are recorded.</textarea>
+          <p class="hint">Read out to callers you can't answer. Please keep a mention that messages are recorded.</p>
+        </div>
+      </div>
+      <div class="nav mobile-nav"><button type="button" class="btn" data-back>Back</button><button type="button" class="btn btn-go" data-next>Next</button></div>
+    </fieldset>
+
+    <fieldset class="step" data-step="5">
+      <legend>Your plan</legend>
+      <div class="grid">
+        <div class="full" role="radiogroup" aria-labelledby="plan-l">
+          <span class="qlabel" id="plan-l">Which plan did you choose?</span>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="plan" value="textback" required><span>Text-Back, £49/month</span></label>
+            <label class="choice"><input type="radio" name="plan" value="ai"><span>AI Receptionist, £149/month</span></label>
+          </div>
+          <p class="err" id="plan-err"></p>
+        </div>
+        <div class="full" role="radiogroup" aria-labelledby="host-l">
+          <span class="qlabel" id="host-l">Does Big Bark Media host your website?</span>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="hosting_client" value="yes" required><span>Yes</span></label>
+            <label class="choice"><input type="radio" name="hosting_client" value="no"><span>No</span></label>
+            <label class="choice"><input type="radio" name="hosting_client" value="unsure"><span>Not sure</span></label>
+          </div>
+          <p class="hint">Hosting clients pay £39 or £129 a month. We'll apply it for you.</p>
+          <p class="err" id="hosting_client-err"></p>
+        </div>
+        <div class="full">
+          <label class="check"><input type="checkbox" id="dpa_consent" name="dpa_consent" required>
+            <span>I agree that Big Bark Media will handle my callers' details (phone numbers, messages, voicemails and AI call summaries) on my behalf to provide this service, as my data processor. I'll add the <a href="privacy-snippet.html" target="_blank" rel="noopener">suggested wording</a> to my privacy policy.</span></label>
+          <p class="why">UK GDPR requires this agreement between you and us before we handle your callers' data. We'll send you the full data processing agreement.</p>
+          <p class="err" id="dpa_consent-err"></p>
+        </div>
+        <div class="hp" aria-hidden="true"><label for="company_fax">Leave this empty</label><input type="text" id="company_fax" name="company_fax" tabindex="-1" autocomplete="off"></div>
+      </div>
+      <div class="nav mobile-nav"><button type="button" class="btn" data-back>Back</button><span></span></div>
+    </fieldset>
+
+    <div class="submit-row final-submit">
+      <button type="submit" class="btn btn-go" id="submit">Send my details</button>
+      <p>We'll be in touch within one working day to book your set-up call.</p>
+    </div>
+  </form>
+</div>
+
+<script>
+(function(){
+  var C = window.NMAL_CONFIG || {};
+  var API = (C.apiBase || 'https://api.bigbark.media').replace(/\/$/, '');
+  var EMAIL = C.email || 'info@bigbark.media';
+  if (C.whatsappUrl) { document.getElementById('help-wa').href = C.whatsappUrl; document.getElementById('fb-wa').href = C.whatsappUrl; }
+  document.documentElement.classList.add('js');
+
+  var form = document.getElementById('onb');
+  var $ = function(id){ return document.getElementById(id); };
+  var val = function(n){ var el = form.elements[n]; return el ? (el.value || '').trim() : ''; };
+
+  // --- validators ---
+  function ukMobile(raw){
+    var d = (raw || '').replace(/[\s\-().]/g, '');
+    if (/^07\d{9}$/.test(d)) d = '+44' + d.slice(1);
+    else if (/^447\d{9}$/.test(d)) d = '+' + d;
+    else if (/^00447\d{9}$/.test(d)) d = '+' + d.slice(2);
+    return /^\+447[1-57-9]\d{8}$/.test(d) ? d : null; // same rule as the API: 070 personal and 076 pager numbers can't get texts
+  }
+  var POSTCODE = /^(GIR ?0AA|[A-PR-UWYZ][0-9][0-9]? ?[0-9][ABD-HJLNP-UW-Z]{2}|[A-PR-UWYZ][A-HK-Y][0-9][0-9]? ?[0-9][ABD-HJLNP-UW-Z]{2}|[A-PR-UWYZ][0-9][A-HJKPS-UW] ?[0-9][ABD-HJLNP-UW-Z]{2}|[A-PR-UWYZ][A-HK-Y][0-9][ABEHMNPRV-Y] ?[0-9][ABD-HJLNP-UW-Z]{2})$/i;
+  function normPostcode(p){ p = p.toUpperCase().replace(/\s+/g, ''); return p.length > 3 ? p.slice(0, -3) + ' ' + p.slice(-3) : p; }
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  function normUrl(u){ if (!u) return ''; if (!/^https?:\/\//i.test(u)) u = 'https://' + u; try { var x = new URL(u); return /\./.test(x.hostname) ? x.href : null; } catch(e){ return null; } }
+  var CH = /^(\d{8}|(SC|NI|OC|SO|NC|R0)\d{6})$/i;
+
+  function radio(n){ var r = form.querySelector('input[name="' + n + '"]:checked'); return r ? r.value : ''; }
+
+  function setErr(name, msg){
+    var e = $(name + '-err'); if (e) e.textContent = msg || '';
+    var el = $(name) || form.querySelector('[name="' + name + '"]');
+    if (el && el.type !== 'radio') { el.setAttribute('aria-invalid', msg ? 'true' : 'false'); if (msg) el.setAttribute('aria-describedby', name + '-err'); }
+    return !msg;
+  }
+
+  var checks = {
+    1: function(){
+      var ok = true;
+      ok = setErr('business_name', val('business_name') ? '' : 'Enter your business name.') && ok;
+      var t = radio('legal_entity_type');
+      ok = setErr('legal_entity_type', t ? '' : 'Choose your type of business.') && ok;
+      if (t === 'limited_company') {
+        var ch = val('companies_house_number').replace(/\s/g, '').toUpperCase();
+        if (/^\d{6,7}$/.test(ch)) ch = ('00000000' + ch).slice(-8);
+        form.elements.companies_house_number.value = ch;
+        ok = setErr('companies_house_number', CH.test(ch) ? '' : 'Enter your 8-character Companies House number, for example 01234567 or SC123456.') && ok;
+      } else setErr('companies_house_number', '');
+      ok = setErr('address_line1', val('address_line1') ? '' : 'Enter the first line of your business address.') && ok;
+      ok = setErr('address_town', val('address_town') ? '' : 'Enter your town or city.') && ok;
+      var pc = val('address_postcode');
+      if (POSTCODE.test(pc.replace(/\s+/g, ' '))) { form.elements.address_postcode.value = normPostcode(pc); setErr('address_postcode', ''); }
+      else if (POSTCODE.test(normPostcode(pc))) { form.elements.address_postcode.value = normPostcode(pc); setErr('address_postcode', ''); }
+      else ok = setErr('address_postcode', 'Enter a UK postcode, for example PE13 1AB.') && ok;
+      var w = val('website');
+      ok = setErr('website', !w || normUrl(w) ? '' : 'Check the website address, for example yourbusiness.co.uk.') && ok;
+      return ok;
+    },
+    2: function(){
+      var ok = true;
+      ok = setErr('owner_name', val('owner_name') ? '' : 'Enter your name.') && ok;
+      ok = setErr('owner_mobile', ukMobile(val('owner_mobile')) ? '' : 'Enter a UK mobile number starting 07, for example 07123 456789.') && ok;
+      ok = setErr('alert_email', EMAIL_RE.test(val('alert_email')) ? '' : 'Enter a valid email address.') && ok;
+      if (!$('rep_same').checked) {
+        ok = setErr('rep_name', val('rep_name') ? '' : 'Enter the authorised person\'s name.') && ok;
+        ok = setErr('rep_email', EMAIL_RE.test(val('rep_email')) ? '' : 'Enter their email address.') && ok;
+        ok = setErr('rep_mobile', ukMobile(val('rep_mobile')) ? '' : 'Enter their UK mobile number, starting 07.') && ok;
+      } else ['rep_name','rep_email','rep_mobile'].forEach(function(n){ setErr(n, ''); });
+      return ok;
+    },
+    3: function(){
+      var ok = true;
+      ok = setErr('current_number_type', radio('current_number_type') ? '' : 'Choose which kind of number clients call.') && ok;
+      ok = setErr('current_numbers', /\d{5,}/.test(val('current_numbers').replace(/\s/g, '')) ? '' : 'Enter the number clients call you on.') && ok;
+      ok = setErr('mobile_network', val('mobile_network') ? '' : 'Choose your network, or "Not sure".') && ok;
+      return ok;
+    },
+    4: function(){
+      var ok = true, b = val('booking_url');
+      ok = setErr('booking_url', !b || normUrl(b) ? '' : 'Check the booking link.') && ok;
+      var t = val('autotext_wording');
+      ok = setErr('autotext_wording', /STOP/.test(t) ? '' : 'The text needs to include "Reply STOP to opt out".') && ok;
+      return ok;
+    },
+    5: function(){
+      var ok = true;
+      ok = setErr('plan', radio('plan') ? '' : 'Choose your plan.') && ok;
+      ok = setErr('hosting_client', radio('hosting_client') ? '' : 'Let us know if we host your website.') && ok;
+      ok = setErr('dpa_consent', $('dpa_consent').checked ? '' : 'Please tick to agree. We can\'t handle callers\' details without it.') && ok;
+      return ok;
+    }
+  };
+
+  // --- conditional fields ---
+  function syncEntity(){ $('ch-wrap').hidden = radio('legal_entity_type') !== 'limited_company'; }
+  form.querySelectorAll('input[name=legal_entity_type]').forEach(function(r){ r.addEventListener('change', syncEntity); });
+  $('rep_same').addEventListener('change', function(){ $('rep-wrap').hidden = this.checked; });
+  $('mobile_network').addEventListener('change', function(){ $('vf-note').hidden = this.value !== 'vodafone_payg'; });
+
+  // --- preselect plan from ?plan= ---
+  var qp = new URLSearchParams(location.search).get('plan');
+  if (qp === 'textback' || qp === 'ai') form.querySelector('input[name=plan][value=' + qp + ']').checked = true;
+
+  // --- auto-text preview ---
+  function preview(){
+    var t = $('autotext_wording').value, bn = val('business_name') || 'Your Business', bu = normUrl(val('booking_url'));
+    var bl = bu ? 'Or book here: ' + bu.replace(/^https?:\/\//, '').replace(/\/$/, '') + '. ' : '';
+    var out = t.replace(/\{business_name\}/g, bn).replace(/\{booking_line\}/g, bl);
+    $('at-preview').textContent = out;
+    var segs = out.length <= 160 ? 1 : Math.ceil(out.length / 153);
+    $('at-count').textContent = out.length + ' characters, ' + segs + (segs === 1 ? ' text' : ' texts');
+  }
+  ['autotext_wording','business_name','booking_url'].forEach(function(id){ $(id).addEventListener('input', preview); });
+  preview();
+
+  // --- mobile steps ---
+  var steps = [].slice.call(form.querySelectorAll('fieldset.step')), cur = 1, N = steps.length;
+  var mq = window.matchMedia('(max-width: 760px)');
+  function show(n){
+    cur = n;
+    steps.forEach(function(s){ s.classList.toggle('active', +s.dataset.step === n); });
+    form.querySelectorAll('.progress span').forEach(function(s, i){ s.classList.toggle('done', i < n); });
+    $('step-label').textContent = 'Step ' + n + ' of ' + N;
+    form.querySelector('.final-submit').classList.toggle('show', n === N);
+    if (mq.matches) { window.scrollTo({ top: form.offsetTop - 12 }); var lg = steps[n-1].querySelector('legend'); lg.setAttribute('tabindex','-1'); lg.focus({preventScroll:true}); }
+  }
+  window.__goStep = show;
+  form.addEventListener('click', function(e){
+    if (e.target.matches('[data-next]')) { if (checks[cur]()) show(cur + 1); else focusFirstError(steps[cur-1]); }
+    if (e.target.matches('[data-back]')) show(cur - 1);
+  });
+  function focusFirstError(scope){
+    var e = scope.querySelector('.err:not(:empty)'); if (!e) return;
+    var f = e.closest('div').querySelector('input:not([type=hidden]),select,textarea'); if (f) f.focus();
+  }
+
+  // --- payload ---
+  function payload(){
+    var rep = $('rep_same').checked;
+    var mob = ukMobile(val('owner_mobile'));
+    var cn = val('current_numbers').split(/[,;\/]| and /).map(function(s){ return s.trim(); }).filter(Boolean).map(function(s){ return ukMobile(s) || s; });
+    return {
+      business_name: val('business_name'),
+      legal_entity_type: radio('legal_entity_type'),
+      companies_house_number: radio('legal_entity_type') === 'limited_company' ? val('companies_house_number') : null,
+      business_address: { line1: val('address_line1'), line2: val('address_line2') || null, town: val('address_town'), postcode: val('address_postcode') },
+      website: normUrl(val('website')) || null,
+      owner_name: val('owner_name'),
+      owner_mobile: mob,
+      alert_email: val('alert_email').toLowerCase(),
+      authorised_rep: rep ? { name: val('owner_name'), email: val('alert_email').toLowerCase(), mobile: mob, same_as_owner: true }
+                          : { name: val('rep_name'), email: val('rep_email').toLowerCase(), mobile: ukMobile(val('rep_mobile')), same_as_owner: false },
+      current_number_type: radio('current_number_type'),
+      current_numbers: cn,
+      mobile_network: val('mobile_network'),
+      booking_url: normUrl(val('booking_url')) || null,
+      autotext_wording: val('autotext_wording'),
+      greeting_wording: val('greeting_wording'),
+      plan: radio('plan'),
+      hosting_client: radio('hosting_client') === 'yes' ? true : radio('hosting_client') === 'no' ? false : null,
+      dpa_consent: $('dpa_consent').checked,
+      dpa_consent_at: new Date().toISOString(),
+      source_page: location.href,
+      website_hp: val('company_fax')
+    };
+  }
+
+  function mailtoBody(p){
+    var lines = [
+      'Never Miss a Lead onboarding (sent by email because the form could not reach the server)', '',
+      'Business name: ' + p.business_name,
+      'Business type: ' + p.legal_entity_type,
+      'Companies House number: ' + (p.companies_house_number || 'n/a'),
+      'Address: ' + [p.business_address.line1, p.business_address.line2, p.business_address.town, p.business_address.postcode].filter(Boolean).join(', '),
+      'Website: ' + (p.website || ''),
+      'Owner: ' + p.owner_name + ', ' + p.owner_mobile,
+      'Alert email: ' + p.alert_email,
+      'Authorised rep: ' + p.authorised_rep.name + ', ' + p.authorised_rep.email + ', ' + p.authorised_rep.mobile,
+      'Clients call: ' + p.current_number_type + ' (' + p.current_numbers.join(', ') + ')',
+      'Network: ' + p.mobile_network,
+      'Booking link: ' + (p.booking_url || ''),
+      'Auto-text: ' + p.autotext_wording,
+      'Greeting: ' + p.greeting_wording,
+      'Plan: ' + p.plan,
+      'Hosting client: ' + (p.hosting_client === null ? 'not sure' : p.hosting_client ? 'yes' : 'no'),
+      'Data processing agreement: agreed ' + p.dpa_consent_at
+    ];
+    return 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Never Miss a Lead onboarding: ' + p.business_name) + '&body=' + encodeURIComponent(lines.join('\n'));
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    $('formerr').textContent = '';
+    for (var i = 1; i <= N; i++) {
+      if (!checks[i]()) {
+        if (mq.matches) show(i);
+        $('formerr').textContent = 'Some answers need checking. They\'re marked in red.';
+        focusFirstError(steps[i-1]);
+        return;
+      }
+    }
+    var p = payload();
+    if (p.website_hp) { location.href = 'thanks.html'; return; }
+    var btn = $('submit'); btn.disabled = true; btn.textContent = 'Sending…';
+    var ctl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = setTimeout(function(){ ctl && ctl.abort(); }, 15000);
+    fetch(API + '/api/onboarding', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(p), signal: ctl && ctl.signal })
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return { status: r.status, j: j }; }); })
+      .then(function(res){
+        clearTimeout(timer);
+        if (res.status >= 200 && res.status < 300 && res.j.ok) { location.href = 'thanks.html?plan=' + encodeURIComponent(p.plan); return; }
+        if ((res.status === 400 || res.status === 429) && res.j.message) { btn.disabled = false; btn.textContent = 'Send my details'; $('formerr').textContent = res.j.message; return; }
+        fallback(p);
+      })
+      .catch(function(){ clearTimeout(timer); fallback(p); });
+  });
+
+  function fallback(p){
+    $('mailto').href = mailtoBody(p);
+    var fb = $('fallback'); fb.hidden = false; fb.focus(); fb.scrollIntoView({ block: 'start' });
+    var btn = $('submit'); btn.disabled = false; btn.textContent = 'Try sending again';
+  }
+})();
+</script>
+</body>
+</html>
