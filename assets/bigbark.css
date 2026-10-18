@@ -314,3 +314,38 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px}
 .plan.featured .incl>summary{border-color:rgba(255,255,255,.2);color:var(--white)}
 .incl>summary:focus-visible{outline:3px solid var(--magenta);outline-offset:2px}
 @media (min-width:821px){.incl>summary{display:none}}
+
+/* Legal footer (every page) and legal document pages (privacy, complaints, terms). Added 18 Oct 2026. */
+mark.ph{background:#FFF3BF;color:var(--navy);padding:0 4px;border-radius:4px;font-weight:500}
+footer .legal{margin:0;font-size:13.5px;line-height:1.6}
+footer .links a{white-space:nowrap}
+.vat-line{margin:14px auto 0;font-size:14.5px;color:var(--muted);text-align:center}
+.doc{padding:44px 0 72px;background:var(--white)}
+.doc .wrap{max-width:780px}
+.doc h1{font-size:clamp(32px,5.4vw,46px);margin:0 0 14px}
+.doc h2{font-size:clamp(21px,3vw,25px);margin:40px 0 10px}
+.doc h3{font-size:18px;margin:24px 0 6px}
+.doc p,.doc li{max-width:68ch}
+.doc ul,.doc ol{padding-left:22px}
+.doc li+li{margin-top:6px}
+.doc .updated{color:var(--muted);font-size:14.5px;margin:0 0 24px}
+.doc .note{background:var(--paper);border-left:5px solid var(--magenta);border-radius:0 14px 14px 0;padding:14px 18px;margin:20px 0}
+.doc .note p{margin:0}
+.doc .note p+p{margin-top:8px}
+.doc .toc{background:var(--paper);border-radius:16px;padding:16px 20px;margin:0 0 8px}
+.doc .toc ol{margin:6px 0 0}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0;border:1px solid var(--line);border-radius:12px}
+.doc table{width:100%;min-width:560px;border-collapse:collapse;font-size:14.5px;line-height:1.5}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+.doc th{background:var(--paper);color:var(--navy);font-family:var(--display);font-weight:600}
+.doc tr:last-child td{border-bottom:0}
+.doc .back{display:inline-block;margin-top:36px;font-weight:600}
+@media (max-width:640px){
+  .table-scroll{overflow:visible;border:0;border-radius:0}
+  .doc table{min-width:0;font-size:15px}
+  .doc thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .doc tr{display:block;border:1px solid var(--line);border-radius:12px;margin:0 0 12px;overflow:hidden}
+  .doc td{display:block;border:0;padding:8px 14px}
+  .doc td:first-child{background:var(--paper);padding-top:10px}
+  .doc td[data-label]::before{content:attr(data-label);display:block;font:600 12px/1.4 var(--display);text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:2px}
+}

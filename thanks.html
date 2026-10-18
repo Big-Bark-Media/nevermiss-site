@@ -38,6 +38,10 @@ code{background:var(--white);border:1px solid var(--line);border-radius:6px;padd
 .btns{display:flex;flex-wrap:wrap;gap:10px}
 .btn{display:inline-flex;align-items:center;min-height:48px;padding:12px 22px;border-radius:999px;border:2px solid var(--ink);font-weight:700;text-decoration:none;background:var(--white)}
 .btn.dark{background:var(--ink);color:#fff}
+.site-foot{border-top:1px solid var(--line);background:var(--white);padding:28px 0 36px;font-size:14px;color:var(--muted)}
+.site-foot p{margin:0 0 10px}
+.site-foot .links{display:flex;flex-wrap:wrap;gap:6px 18px}
+mark.ph{background:#FFF3BF;color:var(--ink);padding:0 4px;border-radius:4px}
 
 /* Big Bark Media skin (matches bigbark.media) */
 h1,h2,h3,summary,legend{font-family:"Poppins","Segoe UI",system-ui,sans-serif!important;letter-spacing:0!important;color:#1D274E}
@@ -59,6 +63,7 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
       <li><div>
         <h2>We register your number</h2>
         <p>We submit your business details for the UK number checks that Ofcom requires. This can take a few working days. We'll tell you if anything needs correcting.</p>
+        <p>If you're a sole trader or partnership, we'll also send you a secure link to upload photo ID for the check. Please don't send ID by email or WhatsApp.</p>
       </div></li>
       <li><div>
         <h2>We book your set-up call</h2>
@@ -71,7 +76,7 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
       </div></li>
       <li><div>
         <h2>We test it together</h2>
-        <p>We ring you, you don't answer, and we check the text arrives and your alert comes through. Then you're live.</p>
+        <p>We ring you, you don't answer, and we check the text arrives and your alert comes through. Then you're live, and that's when your 14-day free trial starts.</p>
       </div></li>
     </ol>
     <div class="box">
@@ -83,6 +88,12 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
     </div>
   </main>
 </div>
+<footer class="site-foot">
+  <div class="wrap">
+    <p>Never Miss a Lead is a service from <a href="https://bigbark.media">Big Bark Media</a>. <!-- Fill before publishing (facts/product-facts.md section 13). --><mark class="ph">[BIG BARK MEDIA LEGAL NAME]</mark>, registered in England and Wales, company number <mark class="ph">[COMPANY NUMBER]</mark>. Registered office: <mark class="ph">[REGISTERED ADDRESS]</mark>. VAT number: <mark class="ph">[VAT NUMBER, or "Not VAT registered"]</mark>.</p>
+    <p class="links"><a href="privacy.html">Privacy notice</a><a href="complaints.html">Complaints</a><a href="terms.html">Terms</a><a href="mailto:info@bigbark.media">info@bigbark.media</a></p>
+  </div>
+</footer>
 <script>
 var C = window.NMAL_CONFIG || {};
 if (C.whatsappUrl) document.getElementById('wa').href = C.whatsappUrl;

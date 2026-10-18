@@ -26,6 +26,11 @@ ol{padding-left:22px;color:var(--muted)}
 .snippet p{margin:0 0 12px}
 .snippet p:last-child{margin:0}
 mark{background:#fff3bf;padding:0 3px;border-radius:3px}
+.lbl{color:var(--muted);font-size:14px}
+.site-foot{margin-top:40px;border-top:1px solid var(--line);padding-top:20px;font-size:14px;color:var(--muted)}
+.site-foot p{margin:0 0 10px}
+.site-foot .links{display:flex;flex-wrap:wrap;gap:6px 18px}
+mark.ph{background:#FFF3BF;padding:0 4px;border-radius:4px}
 button{font:700 16px "Rubik",sans-serif;min-height:48px;padding:12px 22px;border-radius:999px;border:2px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer}
 button:focus-visible{outline:3px solid var(--hivis);outline-offset:2px}
 #status{margin-left:12px;color:var(--grass);font-weight:600}
@@ -47,20 +52,29 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
   <p class="warn">Template, not legal advice. Check it fits your business and your existing privacy policy, and take advice if you're unsure.</p>
   <ol>
     <li>Replace the <mark>highlighted</mark> parts.</li>
-    <li>Paste the section into your privacy policy, for example under "How we use your information".</li>
-    <li>Delete the AI paragraph if you're on the Text-Back plan.</li>
+    <li>Delete the paragraphs marked for a plan you're not on. Text-Back: keep "Calls, texts and voicemail", "Who handles it" and "Your rights". Smart Text: also keep "Automated text replies" (and "WhatsApp" if we set it up for you). AI Receptionist: keep everything.</li>
+    <li>Delete the advert paragraph unless Big Bark has set up ad tracking on your website. If it has, also mention it in your cookie notice.</li>
+    <li>Delete the small grey labels in brackets, then paste the section into your privacy policy, for example under "How we use your information".</li>
   </ol>
 
   <div class="snippet" id="snippet">
     <h2>Calls, texts and voicemail</h2>
-    <p>When you call <mark>[Business name]</mark> and we can't answer, our call-handling service records your phone number, the time of your call and, if you choose to leave one, your voicemail message. If you called from a UK mobile, we send you one text message so you can tell us what you need. If you reply, or send us a message through the "Text us" button on our website, we keep that conversation so we can respond to your enquiry. Callers are told at the start of the voicemail greeting that messages are recorded.</p>
-    <p>If our AI receptionist answers your call, the call is recorded and transcribed, and a written summary is created so we can follow up with you. The AI receptionist only takes a message; it does not make decisions about you.</p>
+    <p>When you call <mark>[Business name]</mark> and we can't answer, our call-handling service records your phone number and the time of your call. If you leave a voicemail, it is recorded (the greeting tells you this). If you called from a UK mobile, we may send you a text so you can tell us what you need. If you reply, or send us a message through the "Text us" button on our website, we keep that conversation so we can respond to your enquiry.</p>
+    <p><span class="lbl">(Smart Text and AI Receptionist only)</span> <strong>Automated text replies.</strong> When you text us, an automated AI assistant may reply on our behalf, using only information we have given it about our services, prices and availability. It collects your name, what you need and a good time to call, and passes anything else (for example a bite, an injury or a complaint) to us. It does not make decisions about you. Your messages are processed by an AI provider (Anthropic) to write the replies. Please don't send us sensitive information by text unless you need to.</p>
+    <p><span class="lbl">(Only if you use WhatsApp with Never Miss a Lead)</span> <strong>WhatsApp.</strong> If you message us on WhatsApp, your messages are also processed by WhatsApp (Meta) under its own terms, and handled in the same way as texts.</p>
+    <p><span class="lbl">(AI Receptionist only)</span> <strong>AI receptionist.</strong> If we can't answer, an AI receptionist may answer your call. It tells you at the start that it's an AI assistant and that the call is transcribed. The call audio is not recorded, but a written transcript and a short summary are created so we can call you back. The AI receptionist only takes a message; it does not make decisions about you.</p>
+    <p><span class="lbl">(Only if Big Bark has set up ad tracking on your website)</span> When you visit our website from one of our adverts on Google, Facebook or Instagram, our enquiry tool remembers which advert you came from for up to 90 days, using your browser's local storage (no cookies). If you then call, text, WhatsApp or message us, we use this to see which adverts work, and we may show you a phone number specific to that advert. It isn't used to show you adverts and isn't shared with anyone else, except that we may tell Google Ads that an enquiry came from its advert (using the advert click reference, not your name or number).</p>
     <p>We use this information to respond to your enquiry. Our legal basis is our legitimate interest in responding to people who contact us, or taking steps at your request before entering into a contract with you. We will only text you about your enquiry. You can reply STOP at any time and we won't text you again.</p>
-    <p>This service is provided for us by Big Bark Media (bigbark.media), who act as our data processor under a written agreement and only use your information on our instructions. They use trusted sub-processors to deliver calls, texts, storage and transcription, some of which may process data outside the UK under appropriate safeguards. Call records, messages, voicemails and call summaries are deleted after 12 months.</p>
-    <p>To ask about or access the information we hold about you, contact <mark>[your email address]</mark>.</p>
+    <p><strong>Who handles it.</strong> This service is provided for us by Big Bark Media (bigbark.media), who act as our data processor under a written agreement and only use your information on our instructions. They use sub-processors for calls and texts (Twilio), storage (Supabase, in London), hosting (Cloudflare), email alerts (Resend) and, depending on our plan, AI text replies (Anthropic), the AI receptionist (ElevenLabs) and WhatsApp (Meta). Some of these are based in, or give support from, the United States, so your information may be processed outside the UK under safeguards approved by UK law (such as the UK-US data bridge or the ICO's international data transfer addendum).</p>
+    <p><strong>How long we keep it.</strong> Message contents, voicemails, AI transcripts and summaries are deleted after 12 months. A basic log of calls and messages (phone number, name if you gave one, time and outcome) is kept while we use the service, for our records. If you reply STOP, we keep a note of your number so we never text you again.</p>
+    <p><strong>Your rights.</strong> You can ask to see, correct or delete the information we hold about you, or object to how we use it, by contacting <mark>[your email address]</mark>. If you're unhappy with how we've handled your information, please tell us at <mark>[your email address]</mark> and we'll acknowledge your complaint within 30 days. You can also complain to the Information Commissioner's Office (ico.org.uk, 0303 123 1113).</p>
   </div>
   <button type="button" id="copy">Copy wording</button><span id="status" role="status"></span>
-  <p style="margin-top:28px;color:var(--muted);font-size:15px">Questions? Email <a href="mailto:info@bigbark.media">info@bigbark.media</a>.</p>
+  <p style="margin-top:28px;color:var(--muted);font-size:15px">Questions? Email <a href="mailto:info@bigbark.media">info@bigbark.media</a>. Last updated 18 October 2026: recording, AI text replies, WhatsApp and retention wording corrected. If you copied an earlier version, please replace it.</p>
+  <footer class="site-foot">
+    <p>Never Miss a Lead is a service from <a href="https://bigbark.media">Big Bark Media</a>. <!-- Fill before publishing (facts/product-facts.md section 13). --><mark class="ph">[BIG BARK MEDIA LEGAL NAME]</mark>, registered in England and Wales, company number <mark class="ph">[COMPANY NUMBER]</mark>. Registered office: <mark class="ph">[REGISTERED ADDRESS]</mark>. VAT number: <mark class="ph">[VAT NUMBER, or "Not VAT registered"]</mark>.</p>
+    <p class="links"><a href="index.html">Never Miss a Lead</a><a href="privacy.html">Big Bark's privacy notice</a><a href="complaints.html">Complaints</a><a href="terms.html">Terms</a></p>
+  </footer>
 </main>
 <script>
 document.getElementById('copy').addEventListener('click', function(){

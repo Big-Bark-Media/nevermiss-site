@@ -102,6 +102,14 @@ input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:none;box
 [hidden]{display:none!important}
 .fallback{margin-bottom:24px}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.id-note{background:var(--hivis);border-radius:14px;padding:12px 14px;font-size:15px;margin:10px 0 0}
+.id-note p{margin:0}
+/* legal footer (same content as index.html) */
+.site-foot{border-top:1px solid var(--line);background:var(--white);padding:28px 0 36px;font-size:14px;color:var(--muted)}
+.site-foot p{margin:0 0 10px;max-width:none}
+.site-foot .links{display:flex;flex-wrap:wrap;gap:6px 18px}
+.site-foot a{color:var(--ink)}
+mark.ph{background:#FFF3BF;color:var(--ink);padding:0 4px;border-radius:4px}
 
 /* Big Bark Media skin (matches bigbark.media) */
 h1,h2,h3,summary,legend{font-family:"Poppins","Segoe UI",system-ui,sans-serif!important;letter-spacing:0!important;color:#1D274E}
@@ -122,7 +130,7 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
 
   <div class="intro">
     <h1>Let's get your number set up</h1>
-    <p>This takes about 5 minutes. We use it to register your number, write your texts and set up your alerts. We'll then book a short call to switch everything on and test it with you.</p>
+    <p>This takes about 5 minutes. We use it to register your number, write your texts and set up your alerts. We'll then book a short call to switch everything on and test it with you. Your 14-day free trial starts when your number goes live.</p>
     <div class="why-box"><p><strong>Why we ask for business details:</strong> Ofcom, the UK phone regulator, requires the business behind every phone number to be identified and verified. Our phone provider checks these details before your number can go live, so please make sure they match your official records.</p></div>
   </div>
 
@@ -154,14 +162,22 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
             <label class="choice"><input type="radio" name="legal_entity_type" value="limited_company" required><span>Limited company</span></label>
             <label class="choice"><input type="radio" name="legal_entity_type" value="sole_trader"><span>Sole trader</span></label>
             <label class="choice"><input type="radio" name="legal_entity_type" value="partnership"><span>Partnership</span></label>
+            <label class="choice"><input type="radio" name="legal_entity_type" value="llp"><span>LLP</span></label>
+            <label class="choice"><input type="radio" name="legal_entity_type" value="other"><span>Something else</span></label>
           </div>
           <p class="why" id="entity-why">Needed for the Ofcom business verification on your number.</p>
           <p class="err" id="legal_entity_type-err"></p>
+          <div class="id-note" id="id-note" hidden><p><strong>Sole traders and partnerships:</strong> because your business isn't on the Companies House register, our phone provider has to check the photo ID of the person responsible for the number (passport or driving licence). We'll send you a secure link to upload it after this form. Please don't send ID by email or WhatsApp, and don't add it here.</p></div>
+        </div>
+        <div class="full" id="other-wrap" hidden>
+          <label for="legal_entity_other">What type of organisation?</label>
+          <input type="text" id="legal_entity_other" name="legal_entity_other" autocomplete="off" maxlength="80" placeholder="e.g. charity, community interest company">
+          <p class="err" id="legal_entity_other-err"></p>
         </div>
         <div class="full" id="ch-wrap" hidden>
           <label for="companies_house_number">Companies House number</label>
           <input type="text" id="companies_house_number" name="companies_house_number" inputmode="text" autocomplete="off" maxlength="10" placeholder="e.g. 12345678 or SC123456">
-          <p class="why">Our phone provider checks this against the Companies House register.</p>
+          <p class="why">Our phone provider checks this against the Companies House register. LLPs start with OC.</p>
           <p class="err" id="companies_house_number-err"></p>
         </div>
         <div class="full">
@@ -211,8 +227,14 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
         <div>
           <label for="alert_email">Email for alerts</label>
           <input type="email" id="alert_email" name="alert_email" autocomplete="email" required>
-          <p class="hint">Also your dashboard login.</p>
+          <p class="hint">We'll also use it for your dashboard login.</p>
           <p class="err" id="alert_email-err"></p>
+        </div>
+        <div class="full">
+          <label for="paid_email">The email address you paid with <span class="opt">(if different)</span></label>
+          <input type="email" id="paid_email" name="paid_email" autocomplete="off" inputmode="email">
+          <p class="hint">The email you used at checkout, so we can match your payment to this form. Leave it blank if it's the same as above, or if you haven't paid yet.</p>
+          <p class="err" id="paid_email-err"></p>
         </div>
         <div class="full">
           <label class="check"><input type="checkbox" id="rep_same" checked> <span>I'm the person authorised to act for this business</span></label>
@@ -303,8 +325,9 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
         </div>
         <div class="full">
           <label for="greeting_wording">Voicemail greeting</label>
-          <textarea id="greeting_wording" name="greeting_wording" maxlength="300">Sorry we missed your call. We've just sent you a text, or leave a short message after the tone. Messages are recorded.</textarea>
-          <p class="hint">Read out to callers you can't answer. Please keep a mention that messages are recorded.</p>
+          <textarea id="greeting_wording" name="greeting_wording" maxlength="300">Sorry we missed your call. Leave a short message after the tone, and if you're on a mobile we'll text you too. Messages are recorded.</textarea>
+          <p class="hint">Read out to callers you can't answer. Keep "Messages are recorded". Please don't promise a text: callers on landlines or withheld numbers can't get one.</p>
+          <p class="err" id="greeting_wording-err"></p>
         </div>
       </div>
       <div class="nav mobile-nav"><button type="button" class="btn" data-back>Back</button><button type="button" class="btn btn-go" data-next>Next</button></div>
@@ -329,7 +352,7 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
             <label class="choice"><input type="radio" name="hosting_client" value="no"><span>No</span></label>
             <label class="choice"><input type="radio" name="hosting_client" value="unsure"><span>Not sure</span></label>
           </div>
-          <p class="hint">Hosting clients pay £39 or £129 a month. We'll apply it for you.</p>
+          <p class="hint">Hosting clients pay £39, £79 or £129 a month. We'll apply it for you.</p>
           <p class="err" id="hosting_client-err"></p>
         </div>
         <div class="full wa-block" id="wa-block" hidden>
@@ -362,10 +385,16 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
         </div>
         <div class="full">
           <label class="check"><input type="checkbox" id="dpa_consent" name="dpa_consent" required>
-            <span>I agree that Big Bark Media will handle my callers' details (phone numbers, messages, voicemails and AI call summaries) on my behalf to provide this service, as my data processor. I'll add the <a href="privacy-snippet.html" target="_blank" rel="noopener">suggested wording</a> to my privacy policy.</span></label>
+            <span>I agree that Big Bark Media will handle my callers' details (phone numbers, messages, voicemails, and AI call transcripts and summaries) on my behalf to provide this service, as my data processor. I'll add the <a href="privacy-snippet.html" target="_blank" rel="noopener">suggested wording</a> to my privacy policy.</span></label>
           <p class="why">UK GDPR requires this agreement between you and us before we handle your callers' data. We'll send you the full data processing agreement.</p>
           <p class="err" id="dpa_consent-err"></p>
         </div>
+        <div class="full">
+          <label class="check"><input type="checkbox" id="business_use" name="business_use" required>
+            <span>I'm signing up for my business, not as a private individual.</span></label>
+          <p class="err" id="business_use-err"></p>
+        </div>
+        <div class="full"><p class="hint" style="margin:0">How we use the details on this form, including your address and contact details: see our <a href="privacy.html" target="_blank" rel="noopener">privacy notice</a>.</p></div>
         <div class="hp" aria-hidden="true"><label for="company_fax">Leave this empty</label><input type="text" id="company_fax" name="company_fax" tabindex="-1" autocomplete="off"></div>
       </div>
       <div class="nav mobile-nav"><button type="button" class="btn" data-back>Back</button><span></span></div>
@@ -377,6 +406,12 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
     </div>
   </form>
 </div>
+<footer class="site-foot">
+  <div class="wrap">
+    <p>Never Miss a Lead is a service from <a href="https://bigbark.media">Big Bark Media</a>. <!-- Fill before publishing (facts/product-facts.md section 13). --><mark class="ph">[BIG BARK MEDIA LEGAL NAME]</mark>, registered in England and Wales, company number <mark class="ph">[COMPANY NUMBER]</mark>. Registered office: <mark class="ph">[REGISTERED ADDRESS]</mark>. VAT number: <mark class="ph">[VAT NUMBER, or "Not VAT registered"]</mark>.</p>
+    <p class="links"><a href="privacy.html">Privacy notice</a><a href="complaints.html">Complaints</a><a href="terms.html">Terms</a><a href="mailto:info@bigbark.media">info@bigbark.media</a></p>
+  </div>
+</footer>
 
 <script>
 (function(){
@@ -419,7 +454,9 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
       ok = setErr('business_name', val('business_name') ? '' : 'Enter your business name.') && ok;
       var t = radio('legal_entity_type');
       ok = setErr('legal_entity_type', t ? '' : 'Choose your type of business.') && ok;
-      if (t === 'limited_company') {
+      if (t === 'other') ok = setErr('legal_entity_other', val('legal_entity_other') ? '' : 'Tell us what type of organisation it is.') && ok;
+      else setErr('legal_entity_other', '');
+      if (t === 'limited_company' || t === 'llp') {
         var ch = val('companies_house_number').replace(/\s/g, '').toUpperCase();
         if (/^\d{6,7}$/.test(ch)) ch = ('00000000' + ch).slice(-8);
         form.elements.companies_house_number.value = ch;
@@ -440,6 +477,8 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
       ok = setErr('owner_name', val('owner_name') ? '' : 'Enter your name.') && ok;
       ok = setErr('owner_mobile', ukMobile(val('owner_mobile')) ? '' : 'Enter a UK mobile number starting 07, for example 07123 456789.') && ok;
       ok = setErr('alert_email', EMAIL_RE.test(val('alert_email')) ? '' : 'Enter a valid email address.') && ok;
+      var pe = val('paid_email');
+      ok = setErr('paid_email', !pe || EMAIL_RE.test(pe) ? '' : 'Check the email address you paid with, or leave it blank.') && ok;
       if (!$('rep_same').checked) {
         ok = setErr('rep_name', val('rep_name') ? '' : 'Enter the authorised person\'s name.') && ok;
         ok = setErr('rep_email', EMAIL_RE.test(val('rep_email')) ? '' : 'Enter their email address.') && ok;
@@ -459,6 +498,8 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
       ok = setErr('booking_url', !b || normUrl(b) ? '' : 'Check the booking link.') && ok;
       var t = val('autotext_wording');
       ok = setErr('autotext_wording', /STOP/.test(t) ? '' : 'The text needs to include "Reply STOP to opt out".') && ok;
+      var g = val('greeting_wording');
+      ok = setErr('greeting_wording', !g ? 'Enter a voicemail greeting, or keep ours.' : !/record/i.test(g) ? 'The greeting needs to tell callers that messages are recorded.' : /(just|already) sent you a text/i.test(g) ? 'Please don\'t say a text has been sent: not every caller can get one.' : '') && ok;
       return ok;
     },
     5: function(){
@@ -466,12 +507,18 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
       ok = setErr('plan', radio('plan') ? '' : 'Choose your plan.') && ok;
       ok = setErr('hosting_client', radio('hosting_client') ? '' : 'Let us know if we host your website.') && ok;
       ok = setErr('dpa_consent', $('dpa_consent').checked ? '' : 'Please tick to agree. We can\'t handle callers\' details without it.') && ok;
+      ok = setErr('business_use', $('business_use').checked ? '' : 'Never Miss a Lead is for businesses. Please tick to confirm.') && ok;
       return ok;
     }
   };
 
   // --- conditional fields ---
-  function syncEntity(){ $('ch-wrap').hidden = radio('legal_entity_type') !== 'limited_company'; }
+  function syncEntity(){
+    var t = radio('legal_entity_type');
+    $('ch-wrap').hidden = t !== 'limited_company' && t !== 'llp';
+    $('id-note').hidden = t !== 'sole_trader' && t !== 'partnership';
+    $('other-wrap').hidden = t !== 'other';
+  }
   form.querySelectorAll('input[name=legal_entity_type]').forEach(function(r){ r.addEventListener('change', syncEntity); });
   $('rep_same').addEventListener('change', function(){ $('rep-wrap').hidden = this.checked; });
   $('mobile_network').addEventListener('change', function(){ $('vf-note').hidden = this.value !== 'vodafone_payg'; });
@@ -534,12 +581,15 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
     return {
       business_name: val('business_name'),
       legal_entity_type: radio('legal_entity_type'),
-      companies_house_number: radio('legal_entity_type') === 'limited_company' ? val('companies_house_number') : null,
+      legal_entity_other: radio('legal_entity_type') === 'other' ? val('legal_entity_other') : null,
+      companies_house_number: (radio('legal_entity_type') === 'limited_company' || radio('legal_entity_type') === 'llp') ? val('companies_house_number') : null,
+      id_check_needed: radio('legal_entity_type') === 'sole_trader' || radio('legal_entity_type') === 'partnership',
       business_address: { line1: val('address_line1'), line2: val('address_line2') || null, town: val('address_town'), postcode: val('address_postcode') },
       website: normUrl(val('website')) || null,
       owner_name: val('owner_name'),
       owner_mobile: mob,
       alert_email: val('alert_email').toLowerCase(),
+      paid_email: val('paid_email').toLowerCase() || null,
       authorised_rep: rep ? { name: val('owner_name'), email: val('alert_email').toLowerCase(), mobile: mob, same_as_owner: true }
                           : { name: val('rep_name'), email: val('rep_email').toLowerCase(), mobile: ukMobile(val('rep_mobile')), same_as_owner: false },
       current_number_type: radio('current_number_type'),
@@ -558,6 +608,7 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
         show_address: $('wa_show_address').checked
       } : null,
       dpa_consent: $('dpa_consent').checked,
+      business_use: $('business_use').checked,
       dpa_consent_at: new Date().toISOString(),
       source_page: location.href,
       website_hp: val('company_fax')
@@ -568,12 +619,13 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
     var lines = [
       'Never Miss a Lead onboarding (sent by email because the form could not reach the server)', '',
       'Business name: ' + p.business_name,
-      'Business type: ' + p.legal_entity_type,
+      'Business type: ' + p.legal_entity_type + (p.legal_entity_other ? ' (' + p.legal_entity_other + ')' : '') + (p.id_check_needed ? ' - photo ID check needed (send secure link)' : ''),
       'Companies House number: ' + (p.companies_house_number || 'n/a'),
       'Address: ' + [p.business_address.line1, p.business_address.line2, p.business_address.town, p.business_address.postcode].filter(Boolean).join(', '),
       'Website: ' + (p.website || ''),
       'Owner: ' + p.owner_name + ', ' + p.owner_mobile,
       'Alert email: ' + p.alert_email,
+      'Paid with email: ' + (p.paid_email || 'same / not paid yet'),
       'Authorised rep: ' + p.authorised_rep.name + ', ' + p.authorised_rep.email + ', ' + p.authorised_rep.mobile,
       'Clients call: ' + p.current_number_type + ' (' + p.current_numbers.join(', ') + ')',
       'Network: ' + p.mobile_network,

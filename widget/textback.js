@@ -1,6 +1,13 @@
-/*! Never Miss a Lead "Text us" widget, Big Bark Media.
+/*! Never Miss a Lead "Text us" widget + ad tracking, Big Bark Media.
  * <script src="https://nevermiss.bigbark.media/widget/textback.js" data-key="WIDGET_KEY"
  *   data-api="https://api.bigbark.media" data-color="#E6007E" data-position="right" async></script>
+ * Optional (docs/ad-tracking.md):
+ *   data-swap-numbers="01945 123456, 07700 900123"  show the Google Ads / Meta ads tracking number to visitors who
+ *                                                   came from those ads (also any element marked data-nmal-phone)
+ *   data-wa-ref           tag wa.me links to the business WhatsApp with "(ref G)" / "(ref M)" / "(ref W)"
+ *   data-textus="off"     tracking only, no "Text us" button
+ * Visitors from Google Ads (gclid/gbraid/wbraid, or utm_source=google + cpc/paid) or Meta ads (fbclid, or
+ * utm_source=facebook/instagram + paid) are remembered for 90 days in this site's localStorage ("nmal_attr").
  * data-key="demo" never touches the network. */
 (function () {
   'use strict';
@@ -21,6 +28,84 @@
     if (/^07\d{9}$/.test(d)) d = '+44' + d.slice(1);
     else if (/^0?0?447\d{9}$/.test(d)) d = '+' + d.replace(/^0+/, '');
     return /^\+447[1-57-9]\d{8}$/.test(d) ? d : ''; // same rule as the API (no 070/076)
+  }
+
+  // ---- Ad attribution (first-party, 90 days) ------------------------------------------------------------------
+  var AK = 'nmal_attr', DAYS90 = 7776000000, KEYS = ['gclid', 'gbraid', 'wbraid', 'fbclid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+  function classify(a) {
+    var src = (a.utm_source || '').toLowerCase(), med = (a.utm_medium || '').toLowerCase(), camp = (a.utm_campaign || '').toLowerCase();
+    var paid = /^(cpc|ppc|paid|paid[_-]?social|paidsocial|cpm|ads?|paid[_-]?search)$/.test(med);
+    if (a.gclid || a.gbraid || a.wbraid || (src === 'google' && paid)) return 'google';
+    if (a.fbclid && !src) return 'meta';
+    if (/^(facebook|fb|instagram|ig|meta)$/.test(src) && (paid || a.fbclid)) return 'meta';
+    if (/^(gbp|gmb|google[_-]?business[_-]?profile)$/.test(src) || (src === 'google' && /(^|[^a-z])(gbp|gmb)([^a-z]|$)/.test(camp))) return 'gbp';
+    return '';
+  }
+  var attr = null;
+  try { attr = JSON.parse(localStorage.getItem(AK) || 'null'); } catch (e) { attr = null; }
+  if (attr && !(attr.t > Date.now() - DAYS90 && attr.source)) attr = null;
+  (function () {
+    var q = {}, n = 0;
+    try { new URLSearchParams(location.search).forEach(function (v, k) { k = k.toLowerCase(); if (KEYS.indexOf(k) > -1 && v && v.length <= 200) { q[k] = v; n++; } }); } catch (e) { return; }
+    if (!n || attr) return; // first touch wins for 90 days
+    var src = classify(q);
+    if (!src) return;
+    q.source = src; q.t = Date.now(); q.first_seen_at = new Date().toISOString(); q.landing_path = location.pathname.slice(0, 300);
+    attr = q;
+    try { localStorage.setItem(AK, JSON.stringify(q)); } catch (e) { /* storage blocked: this page view only */ }
+  })();
+
+  // ---- Number swapping + wa.me tagging --------------------------------------------------------------------------
+  var swapAttr = s.getAttribute('data-swap-numbers'), waRef = s.hasAttribute('data-wa-ref') && s.getAttribute('data-wa-ref') !== 'off';
+  function digits(v) {
+    var d = (v || '').replace(/[^\d+]/g, '');
+    if (d.indexOf('+') === 0) d = d.slice(1).replace(/^44/, '0'); else d = d.replace(/^0044/, '0');
+    return d.replace(/\D/g, '');
+  }
+  var PH = /\+?\(?\d[\d\s().-]{8,17}\d/g;
+  function track(cfg) {
+    var src = attr && attr.source, to = src && cfg.numbers && cfg.numbers[src];
+    var targets = {}, mark = '[data-nmal-phone]';
+    (swapAttr && !/^(true|auto|on)$/i.test(swapAttr) ? swapAttr.split(/[,;]/) : []).forEach(function (x) { x = digits(x); if (x.length > 9) targets[x] = 1; });
+    function text(node, any) {
+      var t = node.nodeValue, hit = 0;
+      var r = t.replace(PH, function (m) { var d = digits(m); if (d.length > 9 && d.length < 13 && (any || targets[d])) { hit = 1; return to.display; } return m; });
+      if (hit) node.nodeValue = r;
+    }
+    function walk(el, any) {
+      var w = document.createTreeWalker(el, 4, null), n, list = [];
+      while ((n = w.nextNode())) if (!/^(SCRIPT|STYLE|NOSCRIPT|TEXTAREA|OPTION)$/.test(n.parentNode.nodeName)) list.push(n);
+      list.forEach(function (x) { text(x, any); });
+    }
+    function run() {
+      if (swapAttr != null && to) {
+        [].forEach.call(document.querySelectorAll('a[href^="tel:"],a[href^="sms:"]'), function (a) {
+          var h = a.getAttribute('href'), p = h.indexOf(':') + 1, end = h.search(/[?;]/), d = digits(h.slice(p, end > 0 ? end : undefined));
+          if (d !== digits(to.e164) && (targets[d] || a.closest(mark))) a.setAttribute('href', h.slice(0, p) + to.e164 + (end > 0 ? h.slice(end) : ''));
+        });
+        [].forEach.call(document.querySelectorAll(mark), function (el) { walk(el, true); });
+        if (Object.keys(targets).length) walk(document.body, false);
+      }
+      if (waRef && cfg.whatsapp) {
+        var code = { google: 'G', meta: 'M', gbp: 'GBP' }[src] || 'W';
+        [].forEach.call(document.querySelectorAll('a[href*="wa.me/"],a[href*="whatsapp.com/send"]'), function (a) {
+          var u; try { u = new URL(a.href); } catch (e) { return; }
+          var num = u.hostname === 'wa.me' ? u.pathname.slice(1) : u.searchParams.get('phone');
+          if ((num || '').replace(/\D/g, '') !== cfg.whatsapp) return;
+          var msg = (u.searchParams.get('text') || 'Hi ' + cfg.business_name + '!').replace(/\s*\(\s*ref[^)]*\)\s*$/i, '');
+          u.searchParams.delete('text');
+          var qs = u.searchParams.toString();
+          a.setAttribute('href', u.origin + u.pathname + '?' + (qs ? qs + '&' : '') + 'text=' + encodeURIComponent(msg + ' (ref ' + code + ')'));
+        });
+      }
+    }
+    run();
+    // Page builders often render the header/footer late: re-run on changes for 15 seconds.
+    if (window.MutationObserver) {
+      var tm, mo = new MutationObserver(function () { clearTimeout(tm); tm = setTimeout(function () { mo.disconnect(); run(); mo.observe(document.body, { childList: true, subtree: true }); }, 250); });
+      mo.observe(document.body, { childList: true, subtree: true });
+      setTimeout(function () { mo.disconnect(); }, 15000);
+    }
   }
 
   function start(name) {
@@ -129,7 +214,7 @@
       if (demo) { setTimeout(done, 700); return; }
       fetch(api + '/api/widget/textback', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ widget_key: key, name: n.value.trim(), mobile: num, message: q.value.trim(), consent: true, website: $('#w').value })
+        body: JSON.stringify({ widget_key: key, name: n.value.trim(), mobile: num, message: q.value.trim(), consent: true, website: $('#w').value, attribution: attr || { landing_path: location.pathname.slice(0, 300) } })
       }).then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return [r.status, j]; }); })
         .then(function (x) {
           if (x[1] && x[1].ok) return done();
@@ -146,12 +231,21 @@
     document.body.appendChild(host);
   }
 
+  var button = s.getAttribute('data-textus') !== 'off';
   function boot() {
-    if (demo) return start(s.getAttribute('data-name') || 'Paws & Progress');
+    if (demo) {
+      var dn = s.getAttribute('data-name') || 'Paws & Progress';
+      track({ business_name: dn, whatsapp: '447700900100', numbers: { google: { e164: '+447700900111', display: '07700 900111' }, meta: { e164: '+447700900222', display: '07700 900222' } } });
+      return button && start(dn);
+    }
     if (!key) return;
     fetch(api + '/api/widget/config?key=' + encodeURIComponent(key))
       .then(function (r) { return r.json(); })
-      .then(function (j) { if (j && j.ok && j.business_name) start(j.business_name); })
+      .then(function (j) {
+        if (!j) return;
+        if (j.numbers) track(j);
+        if (j.ok && j.business_name && button) start(j.business_name);
+      })
       .catch(function () { /* stay hidden: a form that can't send is worse than none */ });
   }
   if (document.body) boot(); else document.addEventListener('DOMContentLoaded', boot);
