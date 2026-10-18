@@ -317,6 +317,7 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
           <span class="qlabel" id="plan-l">Which plan did you choose?</span>
           <div class="choices">
             <label class="choice"><input type="radio" name="plan" value="textback" required><span>Text-Back, £49/month</span></label>
+            <label class="choice"><input type="radio" name="plan" value="smart"><span>Smart Text, £99/month</span></label>
             <label class="choice"><input type="radio" name="plan" value="ai"><span>AI Receptionist, £149/month</span></label>
           </div>
           <p class="err" id="plan-err"></p>
@@ -449,7 +450,7 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
 
   // --- preselect plan from ?plan= ---
   var qp = new URLSearchParams(location.search).get('plan');
-  if (qp === 'textback' || qp === 'ai') form.querySelector('input[name=plan][value=' + qp + ']').checked = true;
+  if (qp === 'textback' || qp === 'smart' || qp === 'ai') form.querySelector('input[name=plan][value=' + qp + ']').checked = true;
 
   // --- auto-text preview ---
   function preview(){
