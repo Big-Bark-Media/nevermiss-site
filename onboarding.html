@@ -381,6 +381,23 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
               <label class="check"><input type="checkbox" id="wa_show_address" name="wa_show_address"><span>Show my business address on my WhatsApp profile</span></label>
               <p class="hint">After you send this form, please email or WhatsApp us your logo: square, at least 640 × 640 pixels, JPG, no see-through background.</p>
             </div>
+            <div class="full">
+              <span class="qlabel" id="waal-l">How should we tell you about new WhatsApp enquiries?</span>
+              <div class="choices" role="radiogroup" aria-labelledby="waal-l">
+                <label class="choice"><input type="radio" name="whatsapp_alerts" value="email" checked><span>Email (recommended)</span></label>
+                <label class="choice"><input type="radio" name="whatsapp_alerts" value="sms"><span>Text</span></label>
+                <label class="choice"><input type="radio" name="whatsapp_alerts" value="both"><span>Both</span></label>
+              </div>
+              <p class="hint">The AI replies straight away either way, and you can see every chat in your dashboard. Missed-call alerts still come by text and email. You can change this any time in Settings.</p>
+            </div>
+            <div class="full">
+              <span class="qlabel" id="ads-l">Do you run ads, or plan to? <span class="opt">(tick any)</span></span>
+              <div class="choices" aria-labelledby="ads-l">
+                <label class="choice"><input type="checkbox" name="ads_platforms" value="meta"><span>Facebook or Instagram</span></label>
+                <label class="choice"><input type="checkbox" name="ads_platforms" value="google"><span>Google</span></label>
+              </div>
+              <p class="hint">We'll help you point your ads at WhatsApp: on Facebook and Instagram, people tap the ad and a WhatsApp chat opens; on Google, your website's WhatsApp button does the same. Your dashboard then shows which ad each enquiry came from. Fair use: up to 500 new WhatsApp enquiries a month.</p>
+            </div>
           </div>
         </div>
         <div class="full">
@@ -607,6 +624,8 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
         email: val('wa_email').toLowerCase() || null,
         show_address: $('wa_show_address').checked
       } : null,
+      whatsapp_alerts: waOn() && radio('whatsapp_setup') !== 'none' ? (radio('whatsapp_alerts') || 'email') : null,
+      ads_platforms: waOn() ? [].map.call(form.querySelectorAll('input[name=ads_platforms]:checked'), function(c){ return c.value; }) : [],
       dpa_consent: $('dpa_consent').checked,
       business_use: $('business_use').checked,
       dpa_consent_at: new Date().toISOString(),
@@ -635,6 +654,7 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
       'Plan: ' + p.plan,
       'Hosting client: ' + (p.hosting_client === null ? 'not sure' : p.hosting_client ? 'yes' : 'no'),
       'WhatsApp: ' + (p.whatsapp ? p.whatsapp.setup + (p.whatsapp.setup !== 'none' ? ' | About: ' + (p.whatsapp.about || '') + ' | Description: ' + (p.whatsapp.description || '') + ' | Email: ' + (p.whatsapp.email || '') + ' | Show address: ' + (p.whatsapp.show_address ? 'yes' : 'no') : '') : 'not on this plan'),
+      'WhatsApp alerts: ' + (p.whatsapp_alerts || 'n/a') + ' | Ads: ' + ((p.ads_platforms && p.ads_platforms.length) ? p.ads_platforms.join(', ') : 'none'),
       'Data processing agreement: agreed ' + p.dpa_consent_at
     ];
     return 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Never Miss a Lead onboarding: ' + p.business_name) + '&body=' + encodeURIComponent(lines.join('\n'));
