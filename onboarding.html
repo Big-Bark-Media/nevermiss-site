@@ -332,6 +332,34 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
           <p class="hint">Hosting clients pay £39 or £129 a month. We'll apply it for you.</p>
           <p class="err" id="hosting_client-err"></p>
         </div>
+        <div class="full wa-block" id="wa-block" hidden>
+          <span class="qlabel" id="wa-l">WhatsApp (included with Smart Text and AI Receptionist)</span>
+          <p class="hint">Missed callers can choose to carry on the chat on WhatsApp. We set up a WhatsApp Business profile on your Never Miss a Lead number, so your own WhatsApp stays exactly as it is.</p>
+          <div class="choices" role="radiogroup" aria-labelledby="wa-l">
+            <label class="choice"><input type="radio" name="whatsapp_setup" value="new_number" checked><span>Use my Never Miss a Lead number (recommended)</span></label>
+            <label class="choice"><input type="radio" name="whatsapp_setup" value="move_existing"><span>Move my existing WhatsApp number over</span></label>
+            <label class="choice"><input type="radio" name="whatsapp_setup" value="none"><span>No WhatsApp for now</span></label>
+          </div>
+          <p class="hint" id="wa-move-note" hidden>If you move your existing number, you won't be able to use the WhatsApp app for it any more. You'll reply from your dashboard instead. We'll talk it through on your set-up call.</p>
+          <div class="grid wa-fields" id="wa-fields">
+            <div class="full">
+              <label for="wa_about">WhatsApp "About" line <span class="counter" id="wa-about-count" aria-live="polite"></span></label>
+              <input type="text" id="wa_about" name="wa_about" maxlength="139" placeholder="e.g. Friendly dog training in Wisbech and March">
+            </div>
+            <div class="full">
+              <label for="wa_description">Short description <span class="opt">(optional)</span></label>
+              <textarea id="wa_description" name="wa_description" maxlength="512" placeholder="e.g. 1-2-1 training, puppy classes and behaviour help. Kind, reward-based methods."></textarea>
+            </div>
+            <div class="full">
+              <label for="wa_email">Email to show on your profile <span class="opt">(optional)</span></label>
+              <input type="email" id="wa_email" name="wa_email" inputmode="email" placeholder="e.g. hello@yourbusiness.co.uk">
+            </div>
+            <div class="full">
+              <label class="check"><input type="checkbox" id="wa_show_address" name="wa_show_address"><span>Show my business address on my WhatsApp profile</span></label>
+              <p class="hint">After you send this form, please email or WhatsApp us your logo: square, at least 640 × 640 pixels, JPG, no see-through background.</p>
+            </div>
+          </div>
+        </div>
         <div class="full">
           <label class="check"><input type="checkbox" id="dpa_consent" name="dpa_consent" required>
             <span>I agree that Big Bark Media will handle my callers' details (phone numbers, messages, voicemails and AI call summaries) on my behalf to provide this service, as my data processor. I'll add the <a href="privacy-snippet.html" target="_blank" rel="noopener">suggested wording</a> to my privacy policy.</span></label>
@@ -448,9 +476,22 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
   $('rep_same').addEventListener('change', function(){ $('rep-wrap').hidden = this.checked; });
   $('mobile_network').addEventListener('change', function(){ $('vf-note').hidden = this.value !== 'vodafone_payg'; });
 
+  // --- WhatsApp block (Smart Text and AI Receptionist only) ---
+  function waOn(){ var p = radio('plan'); return p === 'smart' || p === 'ai'; }
+  function waSync(){
+    $('wa-block').hidden = !waOn();
+    var s = radio('whatsapp_setup');
+    $('wa-move-note').hidden = s !== 'move_existing';
+    $('wa-fields').hidden = s === 'none';
+    var n = val('wa_about').length; $('wa-about-count').textContent = n ? n + ' / 139' : '';
+  }
+  form.addEventListener('change', waSync);
+  $('wa_about').addEventListener('input', waSync);
+
   // --- preselect plan from ?plan= ---
   var qp = new URLSearchParams(location.search).get('plan');
   if (qp === 'textback' || qp === 'smart' || qp === 'ai') form.querySelector('input[name=plan][value=' + qp + ']').checked = true;
+  waSync();
 
   // --- auto-text preview ---
   function preview(){
@@ -509,6 +550,13 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
       greeting_wording: val('greeting_wording'),
       plan: radio('plan'),
       hosting_client: radio('hosting_client') === 'yes' ? true : radio('hosting_client') === 'no' ? false : null,
+      whatsapp: waOn() ? {
+        setup: radio('whatsapp_setup') || 'new_number',
+        about: val('wa_about') || null,
+        description: val('wa_description') || null,
+        email: val('wa_email').toLowerCase() || null,
+        show_address: $('wa_show_address').checked
+      } : null,
       dpa_consent: $('dpa_consent').checked,
       dpa_consent_at: new Date().toISOString(),
       source_page: location.href,
@@ -534,6 +582,7 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
       'Greeting: ' + p.greeting_wording,
       'Plan: ' + p.plan,
       'Hosting client: ' + (p.hosting_client === null ? 'not sure' : p.hosting_client ? 'yes' : 'no'),
+      'WhatsApp: ' + (p.whatsapp ? p.whatsapp.setup + (p.whatsapp.setup !== 'none' ? ' | About: ' + (p.whatsapp.about || '') + ' | Description: ' + (p.whatsapp.description || '') + ' | Email: ' + (p.whatsapp.email || '') + ' | Show address: ' + (p.whatsapp.show_address ? 'yes' : 'no') : '') : 'not on this plan'),
       'Data processing agreement: agreed ' + p.dpa_consent_at
     ];
     return 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Never Miss a Lead onboarding: ' + p.business_name) + '&body=' + encodeURIComponent(lines.join('\n'));
