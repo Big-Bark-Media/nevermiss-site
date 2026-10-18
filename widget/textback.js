@@ -1,11 +1,16 @@
-/*! Never Miss a Lead "Text us" widget + ad tracking, Big Bark Media.
+/*! Never Miss a Lead website button ("WhatsApp us" / "Text us") + ad tracking, Big Bark Media.
  * <script src="https://nevermiss.bigbark.media/widget/textback.js" data-key="WIDGET_KEY"
  *   data-api="https://api.bigbark.media" data-color="#E6007E" data-position="right" async></script>
  * Optional (docs/ad-tracking.md):
  *   data-swap-numbers="01945 123456, 07700 900123"  show the Google Ads / Meta ads tracking number to visitors who
  *                                                   came from those ads (also any element marked data-nmal-phone)
  *   data-wa-ref           tag wa.me links to the business WhatsApp with "(ref G)" / "(ref M)" / "(ref W)"
- *   data-textus="off"     tracking only, no "Text us" button
+ *   data-textus="off"     no "Text us" option (WhatsApp button only, or tracking only if there's no WhatsApp)
+ *   data-whatsapp="off"   no WhatsApp button: "Text us" is the main button again
+ *   data-wa-color="#1F8F4E"  colour of the WhatsApp button
+ * When the business has WhatsApp, the main button is "WhatsApp us": it opens a WhatsApp chat with "Hi <business>!
+ * (ref G/M/GBP/W)" pre-filled, so the enquiry is tagged with the ad it came from. "Text us" becomes a small button
+ * next to it.
  * Visitors from Google Ads (gclid/gbraid/wbraid, or utm_source=google + cpc/paid) or Meta ads (fbclid, or
  * utm_source=facebook/instagram + paid) are remembered for 90 days in this site's localStorage ("nmal_attr").
  * data-key="demo" never touches the network. */
@@ -21,6 +26,8 @@
   var color = s.getAttribute('data-color') || '#E6007E';
   var left = s.getAttribute('data-position') === 'left';
   var demo = key === 'demo';
+  var waColor = s.getAttribute('data-wa-color') || '#1F8F4E';
+  if (!/^#[0-9a-f]{3,8}$|^[a-z]+$|^rgb/i.test(waColor)) waColor = '#1F8F4E';
   if (!/^#[0-9a-f]{3,8}$|^[a-z]+$|^rgb/i.test(color)) color = '#E6007E';
 
   function mobile(v) {
@@ -108,7 +115,12 @@
     }
   }
 
-  function start(name) {
+  function waLink(cfg) {
+    var code = { google: 'G', meta: 'M', gbp: 'GBP' }[attr && attr.source] || 'W';
+    return 'https://wa.me/' + cfg.whatsapp + '?text=' + encodeURIComponent('Hi ' + cfg.business_name + '! (ref ' + code + ')');
+  }
+
+  function start(name, wa, text) {
     var host = document.createElement('div');
     host.setAttribute('data-nmal', '');
     var root = host.attachShadow({ mode: 'open' });
@@ -116,10 +128,13 @@
     root.innerHTML =
       '<style>' +
       ':host{all:initial}*{box-sizing:border-box;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}' +
-      '.l{position:fixed;bottom:20px;' + side + ':20px;z-index:2147483000;display:flex;align-items:center;gap:8px;' +
+      '.r{position:fixed;bottom:20px;' + side + ':20px;z-index:2147483000;display:flex;align-items:center;gap:10px;flex-direction:' + (left ? 'row-reverse' : 'row') + '}' +
+      '.l{display:flex;align-items:center;gap:8px;text-decoration:none;' +
       'background:' + color + ';color:#fff;border:0;border-radius:999px;padding:14px 20px;font-size:16px;font-weight:700;cursor:pointer;' +
       'box-shadow:0 6px 20px rgba(0,0,0,.25)}' +
-      '.l:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #ffbf00;outline-offset:2px}' +
+      '.wa{background:' + waColor + '}' +
+      '.sm{width:48px;height:48px;padding:0;justify-content:center;background:#fff;color:#1a1a2e;box-shadow:0 4px 14px rgba(0,0,0,.22)}' +
+      '.l:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #ffbf00;outline-offset:2px}' +
       '.p{position:fixed;bottom:84px;' + side + ':20px;z-index:2147483001;width:340px;max-width:calc(100vw - 32px);' +
       'max-height:calc(100vh - 104px);overflow:auto;background:#fff;color:#1a1a2e;border-radius:18px;' +
       'box-shadow:0 18px 50px rgba(0,0,0,.3);padding:20px;font-size:15px;line-height:1.45}' +
@@ -139,11 +154,14 @@
       '.f{font-size:12px;color:#6a6a80;margin:10px 0 0}' +
       '.ok{text-align:center;padding:12px 0}.ok b{display:block;font-size:18px;margin-bottom:6px}.ok small{display:block;margin-top:12px;font-size:13px;opacity:.75;line-height:1.4}' +
       '.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}' +
-      '@media(max-width:480px){.p{left:16px;right:16px;width:auto;bottom:80px}.l{bottom:16px;' + side + ':16px}}' +
+      '@media(max-width:480px){.p{left:16px;right:16px;width:auto;bottom:80px}.r{bottom:16px;' + side + ':16px}}' +
       '@media(prefers-reduced-motion:no-preference){.p{animation:u .18s ease-out}@keyframes u{from{opacity:0;transform:translateY(8px)}}}' +
       '</style>' +
-      '<button class="l" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="p">' +
-      '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Text us</button>' +
+      '<div class="r">' +
+      (text ? '<button class="l t' + (wa ? ' sm' : '') + '" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="p"' +
+        (wa ? ' aria-label="Send a text instead" title="Send a text instead"' : '') + '>' + SMS_ICON + (wa ? '' : 'Text us') + '</button>' : '') +
+      (wa ? '<a class="l wa" target="_blank" rel="noopener">' + WA_ICON + 'WhatsApp us</a>' : '') +
+      '</div>' +
       '<div class="p" id="p" role="dialog" aria-modal="true" aria-labelledby="t" hidden>' +
       '<button class="x" type="button" aria-label="Close">&times;</button>' +
       '<div class="b"><h2 id="t"></h2><p class="sub">Leave your number and we\'ll text you back.</p>' +
@@ -160,7 +178,9 @@
       '<p class="f">UK mobiles only. Reply STOP to any text to opt out.</p></form></div></div>';
 
     var $ = function (q) { return root.querySelector(q); };
-    var btn = $('.l'), panel = $('.p'), form = $('form'), body = $('.b');
+    if (wa) { var w = $('.wa'); w.href = wa; }
+    if (!text) { root.removeChild($('.p')); document.body.appendChild(host); return; }
+    var btn = $('.t'), panel = $('.p'), form = $('form'), body = $('.b');
     $('#t').textContent = 'Text ' + name;
 
     function open() {
@@ -233,20 +253,25 @@
     document.body.appendChild(host);
   }
 
-  var button = s.getAttribute('data-textus') !== 'off';
+  var SMS_ICON = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+  var WA_ICON = '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>';
+  var button = s.getAttribute('data-textus') !== 'off', waBtn = s.getAttribute('data-whatsapp') !== 'off';
   function boot() {
     if (demo) {
       var dn = s.getAttribute('data-name') || 'Paws & Progress';
-      track({ business_name: dn, whatsapp: '447700900100', numbers: { google: { e164: '+447700900111', display: '07700 900111' }, meta: { e164: '+447700900222', display: '07700 900222' } } });
-      return button && start(dn);
+      var dc = { business_name: dn, whatsapp: '447700900100', numbers: {} };
+      track(dc);
+      var dwa = waBtn ? waLink(dc) : null;
+      return (button || dwa) && start(dn, dwa, button);
     }
     if (!key) return;
     fetch(api + '/api/widget/config?key=' + encodeURIComponent(key))
       .then(function (r) { return r.json(); })
       .then(function (j) {
         if (!j) return;
-        if (j.numbers) track(j);
-        if (j.ok && j.business_name && button) start(j.business_name);
+        if (j.numbers || j.whatsapp) track(j);
+        var wl = j.ok && j.business_name && j.whatsapp && waBtn ? waLink(j) : null;
+        if (j.ok && j.business_name && (button || wl)) start(j.business_name, wl, button);
       })
       .catch(function () { /* stay hidden: a form that can't send is worse than none */ });
   }
