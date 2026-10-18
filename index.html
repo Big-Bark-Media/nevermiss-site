@@ -128,14 +128,12 @@
         <ol class="st-thread">
             <li class="st-msg sys"><p>Hi, it's Paws &amp; Progress. Sorry we missed your call. How can we help? Or book here: pawsandprogress.co.uk/book. Reply STOP to opt out.</p><span class="meta">Auto-text · 9:41pm</span></li>
             <li class="st-msg in"><p>Hi, my rescue lurcher Milo pulls like mad on the lead and jumps up at everyone. Do you do 1-2-1s? We're in March</p><span class="meta">9:43pm</span></li>
-            <li class="st-msg ai"><p>Paws &amp; Progress: Hi! Yes, we do 1-2-1 training at your home, and March is in our area. It's £45 for an hour, or 4 sessions for £160. Pulling and jumping up are exactly what they cover. Can I take your name?</p><span class="meta">AI assistant · 9:43pm</span></li>
+            <li class="st-msg ai"><p>Paws &amp; Progress: Hi! Yes, we do 1-2-1 training at your home, and March is in our area. It's £45 for an hour, or 4 sessions for £160. Pulling and jumping up are exactly what they cover. Can I take your name?</p><span class="meta">AI assistant · 9:43pm</span><span class="st-tag"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Used your prices and area</span></li>
             <li class="st-msg in"><p>Lucy. Is 4 sessions worth it?</p><span class="meta">9:45pm</span></li>
-            <li class="st-msg ai"><p>Paws &amp; Progress: Thanks Lucy! With a rescue, most people go for the 4, so Milo can practise between visits. You can book here: pawsandprogress.co.uk/book, or Sam can ring you tomorrow if you'd rather chat first?</p><span class="meta">AI assistant · 9:45pm</span></li>
+            <li class="st-msg ai"><p>Paws &amp; Progress: Thanks Lucy! With a rescue, most people go for the 4, so Milo can practise between visits. You can book here: pawsandprogress.co.uk/book, or Sam can ring you tomorrow if you'd rather chat first?</p><span class="meta">AI assistant · 9:45pm</span><span class="st-tag"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Shared your booking link</span></li>
             <li class="st-msg in"><p>A call tomorrow would be great, any time after 12</p><span class="meta">9:46pm</span></li>
-            <li class="st-msg ai"><p>Paws &amp; Progress: Perfect, I've passed that to Sam, who'll call you after 12 tomorrow. Night, and a pat for Milo!</p><span class="meta">AI assistant · 9:46pm</span></li>
-            <li class="st-typing" aria-hidden="true"><span></span><span></span><span></span></li>
+            <li class="st-msg ai"><p>Paws &amp; Progress: Perfect, I've passed that to Sam, who'll call you after 12 tomorrow. Night, and a pat for Milo!</p><span class="meta">AI assistant · 9:46pm</span><span class="st-tag"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Booked a call-back for you</span></li>
         </ol>
-        <button type="button" class="st-replay" hidden>Play it again</button>
       </div>
       <div class="smart-side">
         <div class="morning">
@@ -153,8 +151,10 @@
           <li><b>Knows when to hand over.</b> Bites, aggression, complaints or anything unusual come straight to you.</li>
           <li><b>Goes quiet when you reply.</b> Jump in any time from your phone or dashboard.</li>
         </ul>
-        <a class="btn btn-go" data-link="smart_trial" href="#pricing">Try Smart Text free for 14 days</a>
-        <p class="smart-note">Example conversation with a made-up business and customer. £99 a month after your trial.</p>
+        <div class="smart-cta">
+          <a class="btn btn-go" data-link="smart_trial" href="#pricing">Try Smart Text free for 14 days</a>
+          <p class="smart-note">£99 a month after your trial.<br>Example with a made-up business and customer.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -517,34 +517,6 @@
   seek.addEventListener('input',function(){dragging=true;cur.textContent=fmt(seek.value);});
   seek.addEventListener('change',function(){dragging=false;audio.currentTime=parseFloat(seek.value);sync();});
   lines.forEach(function(li){ li.querySelector('button').addEventListener('click',function(){ audio.currentTime=parseFloat(li.dataset.t); audio.play(); }); });
-})();
-</script>
-<script>
-(function(){
-  var root=document.getElementById('smart-text'); if(!root) return;
-  var phone=root.querySelector('.st-phone'), msgs=[].slice.call(root.querySelectorAll('.st-msg')), typing=root.querySelector('.st-typing'), replay=root.querySelector('.st-replay'), thread=root.querySelector('.st-thread');
-  var reduce=window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce || !('IntersectionObserver' in window)) return; // everything stays visible
-  var timers=[];
-  function clear(){timers.forEach(clearTimeout);timers=[];}
-  function at(ms,fn){timers.push(setTimeout(fn,ms));}
-  function scrollEnd(){thread.scrollTop=thread.scrollHeight;}
-  function play(){
-    clear(); phone.classList.add('anim'); replay.hidden=true;
-    msgs.forEach(function(m){m.classList.remove('show');}); typing.classList.remove('show');
-    var t=300;
-    msgs.forEach(function(m,i){
-      var ai=m.classList.contains('ai');
-      if(ai){ at(t,function(){thread.appendChild(typing);typing.classList.add('show');scrollEnd();}); t+=1500; }
-      at(t,function(){ if(ai) typing.classList.remove('show'); thread.insertBefore(m,typing); m.classList.add('show'); scrollEnd(); });
-      t+= ai ? 1300 : (i===0 ? 1400 : 1900);
-    });
-    at(t,function(){replay.hidden=false;});
-  }
-  phone.classList.add('anim');
-  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ play(); io.disconnect(); } }); },{threshold:.35});
-  io.observe(phone);
-  replay.addEventListener('click',play);
 })();
 </script>
 </body>
