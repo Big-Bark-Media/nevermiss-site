@@ -1,17 +1,16 @@
 /* Never Miss a Lead — site configuration.
-   Every page reads links from here. While a Stripe link is '#', CTAs fall back to bookCallUrl.
+   Every page reads links from here. While a Stripe link is '#', CTAs fall back to WhatsApp (whatsappUrl).
    While demoNumber is 'DEMO_NUMBER', the "try it" demo-number block stays hidden. */
 window.NMAL_CONFIG = {
   apiBase: 'https://api.bigbark.media',
   demoNumber: 'DEMO_NUMBER', // e.g. '+447700900123' once the Twilio demo line exists
   // PAUSED 18 Oct 2026 until launch (audit: no onboarding redirect, trial would start before set-up, no terms at checkout).
-  // While a link is '#', its button says "Book a call" and opens bookCallUrl.
+  // While a link is '#', its button says "WhatsApp us" and opens whatsappUrl with the plan pre-filled.
   // To switch payments back on, swap each '#' for the live link kept in LIVE_LINKS below.
   links: {
     textback_trial: '#', smart_trial: '#', ai_trial: '#',
     textback_now: '#', smart_now: '#', ai_now: '#'
   },
-  bookCallUrl: 'https://calendly.com/craig-od/big-bark-media-consultation-call',
   whatsappUrl: 'https://wa.me/447822882162',
   email: 'info@bigbark.media'
 };

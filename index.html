@@ -345,8 +345,8 @@
     <p class="vat-line">All prices include VAT.</p>
     <div class="extras">
       <div><b>Big Bark hosting clients</b><p>£39 / £79 / £129 a month. <a data-ext="whatsapp" href="#">Message us</a> and we'll apply it for you.</p></div>
-      <div><b>Pay yearly, get 2 months free</b><p>£490, £990 or £1,490 a year. <a data-ext="book" href="#">Ask us</a> and we'll set it up.</p></div>
-      <div><b>Not sure which plan?</b><p>We recommend most trainers start with Smart Text. Want to change plan later? Ask us and we'll switch you the same day. <a data-ext="book" href="#">Book a quick call</a>.</p></div>
+      <div><b>Pay yearly, get 2 months free</b><p>£490, £990 or £1,490 a year. <a data-ext="whatsapp" href="#">WhatsApp us</a> and we'll set it up.</p></div>
+      <div><b>Not sure which plan?</b><p>We recommend most trainers start with Smart Text. Want to change plan later? Ask us and we'll switch you the same day. <a data-ext="whatsapp" href="#">WhatsApp us</a> with any questions.</p></div>
     </div>
   </div>
 </section>
@@ -417,9 +417,9 @@
     <p class="lede">Make sure it gets an answer. Try Never Miss a Lead free for 14 days.</p>
     <div class="cta-row">
       <a class="btn btn-go" href="#pricing">Start your free trial</a>
-      <a class="btn btn-ghost" data-ext="book" href="#">Book a call first</a>
+      <a class="btn btn-ghost" data-ext="whatsapp" href="#">WhatsApp us first</a>
     </div>
-    <p class="alt">Prefer to chat? <a data-ext="whatsapp" href="#">Message us on WhatsApp</a> or email <a href="mailto:info@bigbark.media">info@bigbark.media</a>.</p>
+    <p class="alt">Prefer email? Write to <a href="mailto:info@bigbark.media">info@bigbark.media</a>.</p>
   </div>
 </section>
 </main>
@@ -444,17 +444,18 @@
 (function(){
   var C = window.NMAL_CONFIG || {};
   var L = C.links || {};
-  var book = C.bookCallUrl || 'https://calendly.com/craig-od/big-bark-media-consultation-call';
   var wa = C.whatsappUrl || 'https://wa.me/447822882162';
   document.documentElement.classList.add('js');
 
-  // CTA links: Stripe link if set, else Calendly
+  // CTA links: Stripe link if set, else WhatsApp with the plan pre-filled
   document.querySelectorAll('[data-link]').forEach(function(a){
     var url = L[a.getAttribute('data-link')];
     if (url && url !== '#') { a.href = url; }
     else {
-      a.href = book; a.target = '_blank';
-      if (a.classList.contains('btn')) a.textContent = 'Book a call';
+      var plan = { textback: 'Text-Back', smart: 'Smart Text', ai: 'AI Receptionist' }[(a.getAttribute('data-link') || '').split('_')[0]] || '';
+      a.href = wa + '?text=' + encodeURIComponent('Hi! I\'m interested in Never Miss a Lead' + (plan ? ' (' + plan + ')' : '') + '.');
+      a.target = '_blank';
+      if (a.classList.contains('btn')) a.textContent = 'WhatsApp us';
       // payments paused: hide "Card required. £0 today." and "Skip the trial" under this button
       var box = a.closest('.actions');
       if (box) box.querySelectorAll('.trial-note, .paynow').forEach(function(el){ el.hidden = true; });
@@ -462,7 +463,7 @@
     a.rel = 'noopener';
   });
   document.querySelectorAll('[data-ext]').forEach(function(a){
-    a.href = a.getAttribute('data-ext') === 'whatsapp' ? wa : book;
+    a.href = wa;
     a.target = '_blank'; a.rel = 'noopener';
   });
 
