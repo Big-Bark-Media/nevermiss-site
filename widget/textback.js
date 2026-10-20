@@ -1,6 +1,6 @@
 /*! Never Miss a Lead website button ("WhatsApp us" / "Text us") + ad tracking, Big Bark Media.
  * <script src="https://nevermiss.bigbark.media/widget/textback.js" data-key="WIDGET_KEY"
- *   data-api="https://api.bigbark.media" data-color="#E6007E" data-position="right" async></script>
+ *   data-api="https://never-miss-a-lead-api.dbgs-dashboard.workers.dev" data-color="#E6007E" data-position="right" async></script>
  * Optional (docs/ad-tracking.md):
  *   data-swap-numbers="01945 123456, 07700 900123"  show the Google Ads / Meta ads tracking number to visitors who
  *                                                   came from those ads (also any element marked data-nmal-phone)
@@ -22,7 +22,7 @@
   var s = document.currentScript || document.querySelector('script[src*="textback"][data-key]');
   if (!s) return;
   var key = s.getAttribute('data-key') || '';
-  var api = (s.getAttribute('data-api') || 'https://api.bigbark.media').replace(/\/$/, '');
+  var api = (s.getAttribute('data-api') || 'https://never-miss-a-lead-api.dbgs-dashboard.workers.dev').replace(/\/$/, '');
   var color = s.getAttribute('data-color') || '#E6007E';
   var left = s.getAttribute('data-position') === 'left';
   var demo = key === 'demo';
