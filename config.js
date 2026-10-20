@@ -2,7 +2,8 @@
    Every page reads links from here. While a Stripe link is '#', CTAs fall back to WhatsApp (whatsappUrl).
    While demoNumber is 'DEMO_NUMBER', the "try it" demo-number block stays hidden. */
 window.NMAL_CONFIG = {
-  apiBase: 'https://api.bigbark.media',
+  // api.bigbark.media isn't set up (no DNS), so the form and widget use the Worker's own address (20 Oct 2026).
+  apiBase: 'https://never-miss-a-lead-api.dbgs-dashboard.workers.dev',
   demoNumber: 'DEMO_NUMBER', // e.g. '+447700900123' once the Twilio demo line exists
   // PAUSED 18 Oct 2026 until launch (audit: no onboarding redirect, trial would start before set-up, no terms at checkout).
   // While a link is '#', its button says "WhatsApp us" and opens whatsappUrl with the plan pre-filled.
