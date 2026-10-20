@@ -285,22 +285,42 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
             <option value="">Choose your network</option>
             <option value="ee">EE</option>
             <option value="o2">O2</option>
-            <option value="vodafone_contract">Vodafone (pay monthly)</option>
-            <option value="vodafone_payg">Vodafone (pay as you go)</option>
+            <option value="vodafone">Vodafone</option>
             <option value="three">Three</option>
+            <option value="bt">BT Mobile</option>
             <option value="giffgaff">giffgaff</option>
             <option value="tesco">Tesco Mobile</option>
             <option value="sky">Sky Mobile</option>
-            <option value="bt">BT Mobile</option>
             <option value="id">iD Mobile</option>
-            <option value="voxi">VOXI</option>
             <option value="smarty">SMARTY</option>
+            <option value="voxi">VOXI</option>
             <option value="lebara">Lebara</option>
+            <option value="asda">Asda Mobile</option>
+            <option value="talkmobile">Talkmobile</option>
+            <option value="lyca">Lycamobile</option>
+            <option value="virgin">Virgin Mobile</option>
+            <option value="1p">1pMobile</option>
+            <option value="uw">Utility Warehouse</option>
+            <option value="plusnet">Plusnet Mobile</option>
+            <option value="coop">Your Co-op Mobile</option>
+            <option value="superdrug">Superdrug Mobile</option>
             <option value="other">Other</option>
             <option value="unsure">Not sure</option>
           </select>
-          <p class="hint" id="vf-note" hidden>Vodafone pay as you go doesn't allow call diverts. No problem: we'll give you a Never Miss a Lead number to put on your website and Google profile instead, which rings you first.</p>
+          <input type="text" id="mobile_network_other" name="mobile_network_other" maxlength="60" placeholder="Which network?" hidden style="margin-top:8px">
           <p class="err" id="mobile_network-err"></p>
+        </div>
+        <div class="full" role="group" aria-labelledby="pay-l">
+          <span class="qlabel" id="pay-l">How do you pay for your mobile?</span>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="mobile_pay_type" value="monthly" required><span>Pay monthly (contract or SIM-only)</span></label>
+            <label class="choice"><input type="radio" name="mobile_pay_type" value="payg"><span>Pay as you go (top-ups)</span></label>
+            <label class="choice"><input type="radio" name="mobile_pay_type" value="unsure"><span>Not sure</span></label>
+          </div>
+          <p class="err" id="mobile_pay_type-err"></p>
+          <p class="hint" id="divert-no" hidden>Your network doesn't let this kind of phone plan divert calls to another number. No problem: we'll give you a Never Miss a Lead number to put on your website, Google profile and ads instead. It rings your mobile first, so you still answer as normal.</p>
+          <p class="hint" id="divert-check" hidden>We'll check whether your phone plan can divert calls before we set you up, and email you if it can't. If it can't, you get a Never Miss a Lead number for your website, Google profile and ads instead, which rings your mobile first.</p>
+          <p class="hint" id="divert-charge" hidden>Talkmobile can divert, but charges for diverted calls on top of your minutes. We'll email you the options before we set you up.</p>
         </div>
       </div>
       <div class="nav mobile-nav"><button type="button" class="btn" data-back>Back</button><button type="button" class="btn btn-go" data-next>Next</button></div>
@@ -508,6 +528,7 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
       ok = setErr('current_number_type', radio('current_number_type') ? '' : 'Choose which kind of number clients call.') && ok;
       ok = setErr('current_numbers', /\d{5,}/.test(val('current_numbers').replace(/\s/g, '')) ? '' : 'Enter the number clients call you on.') && ok;
       ok = setErr('mobile_network', val('mobile_network') ? '' : 'Choose your network, or "Not sure".') && ok;
+      ok = setErr('mobile_pay_type', radio('mobile_pay_type') ? '' : 'Choose how you pay, or "Not sure".') && ok;
       return ok;
     },
     4: function(){
@@ -538,7 +559,26 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
   }
   form.querySelectorAll('input[name=legal_entity_type]').forEach(function(r){ r.addEventListener('change', syncEntity); });
   $('rep_same').addEventListener('change', function(){ $('rep-wrap').hidden = this.checked; });
-  $('mobile_network').addEventListener('change', function(){ $('vf-note').hidden = this.value !== 'vodafone_payg'; });
+  // Divert check (docs/divert-codes.md, checked 20 Oct 2026). Keep in step with worker/src/lib/divert.ts.
+  var DIVERT_NO = ['voxi', 'lebara', 'lyca', 'virgin', '1p'];
+  var DIVERT_YES = ['ee', 'o2', 'vodafone', 'three', 'bt', 'giffgaff', 'sky', 'id', 'smarty', 'uw'];
+  function divertVerdict(net, pay){
+    if (!net) return '';
+    if (DIVERT_NO.indexOf(net) >= 0) return 'no';
+    if ((net === 'vodafone' || net === 'asda') && pay === 'payg') return 'no';
+    if (net === 'talkmobile') return 'charge';
+    if (!pay) return '';
+    if (pay === 'unsure') return 'check';
+    if ((net === 'ee' || net === 'o2') && pay === 'payg') return 'check';
+    return DIVERT_YES.indexOf(net) >= 0 ? 'yes' : 'check';
+  }
+  function divertSync(){
+    var v = divertVerdict(val('mobile_network'), radio('mobile_pay_type'));
+    $('divert-no').hidden = v !== 'no'; $('divert-check').hidden = v !== 'check'; $('divert-charge').hidden = v !== 'charge';
+    $('mobile_network_other').hidden = val('mobile_network') !== 'other';
+  }
+  $('mobile_network').addEventListener('change', divertSync);
+  form.querySelectorAll('input[name=mobile_pay_type]').forEach(function(r){ r.addEventListener('change', divertSync); });
 
   // --- WhatsApp block (Smart Text and AI Receptionist only) ---
   function waOn(){ var p = radio('plan'); return p === 'smart' || p === 'ai'; }
@@ -611,7 +651,9 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
                           : { name: val('rep_name'), email: val('rep_email').toLowerCase(), mobile: ukMobile(val('rep_mobile')), same_as_owner: false },
       current_number_type: radio('current_number_type'),
       current_numbers: cn,
-      mobile_network: val('mobile_network'),
+      mobile_network: val('mobile_network') === 'other' && val('mobile_network_other') ? 'other: ' + val('mobile_network_other') : val('mobile_network'),
+      mobile_pay_type: radio('mobile_pay_type'),
+      divert_verdict: divertVerdict(val('mobile_network'), radio('mobile_pay_type')),
       booking_url: normUrl(val('booking_url')) || null,
       autotext_wording: val('autotext_wording'),
       greeting_wording: val('greeting_wording'),
@@ -647,7 +689,7 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
       'Paid with email: ' + (p.paid_email || 'same / not paid yet'),
       'Authorised rep: ' + p.authorised_rep.name + ', ' + p.authorised_rep.email + ', ' + p.authorised_rep.mobile,
       'Clients call: ' + p.current_number_type + ' (' + p.current_numbers.join(', ') + ')',
-      'Network: ' + p.mobile_network,
+      'Network: ' + p.mobile_network + ' (' + (p.mobile_pay_type || '?') + ') - divert: ' + (p.divert_verdict || '?'),
       'Booking link: ' + (p.booking_url || ''),
       'Auto-text: ' + p.autotext_wording,
       'Greeting: ' + p.greeting_wording,
