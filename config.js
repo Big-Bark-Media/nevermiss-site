@@ -8,8 +8,8 @@ window.NMAL_CONFIG = {
   // Live since 20 Oct 2026: each link requires accepting the terms and redirects to onboarding.html?plan=<plan>&paid=1.
   // To pause sign-ups again, set a link to '#': its button then says "WhatsApp us" and opens whatsappUrl.
   links: {
-    textback_trial: 'https://buy.stripe.com/7sYcN6c6Mg7S46v1ea9IQ0p',
-    smart_trial: 'https://buy.stripe.com/28E14o5IocVG6eDf509IQ0t',
+    textback_trial: 'https://buy.stripe.com/9B68wQ7QwbRCeL92ie9IQ0y',
+    smart_trial: 'https://buy.stripe.com/bJe4gAfiY2h27iHf509IQ0z',
     ai_trial: 'https://buy.stripe.com/9B67sMc6MdZKgTh1ea9IQ0q',
     textback_now: 'https://buy.stripe.com/8x228s6Ms7Bm0Uje0W9IQ0r',
     smart_now: 'https://buy.stripe.com/00w00k6Ms4pa32r8GC9IQ0u',
