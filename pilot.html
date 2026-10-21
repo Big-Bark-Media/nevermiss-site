@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Rubik:wght@400;500&display=swap" rel="stylesheet">
-<script src="config.js?v=20261021-1630"></script>
+<script src="config.js?v=20261021-1700"></script>
 <link rel="stylesheet" href="assets/bigbark.css">
 <style>
   .pilot-strip { display:inline-block; background:var(--pink,#E6007E); color:#fff; font-weight:600; border-radius:999px; padding:.35rem .9rem; font-size:.9rem; margin-bottom:1rem }
@@ -73,6 +73,151 @@
     </ol>
     <div class="note-box">
       <p><b>Your pilot code is added for you</b> when you click a plan below, so the checkout shows the half price. If it says the code is no longer valid, all 5 spots have gone.</p>
+    </div>
+  </div>
+</section>
+
+<section id="see-it" class="see on-ink" aria-labelledby="see-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">See it in action</p>
+      <h2 id="see-h">What your customers <em class="hl">actually get</em></h2>
+      <p class="lede">Two quick examples from a made-up dog trainer, Sam at Paws &amp; Progress. Press play to hear a missed call answered.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Examples">
+      <button type="button" role="tab" id="tab-call" aria-controls="panel-call" aria-selected="true">AI Receptionist <span>£74.50 pilot</span></button>
+      <button type="button" role="tab" id="tab-smart" aria-controls="panel-smart" aria-selected="false" tabindex="-1">Smart Text <span>£49.50 pilot</span></button>
+    </div>
+
+    <div class="panel" id="panel-call" role="tabpanel" aria-labelledby="tab-call">
+      <div class="see-grid listen" id="listen">
+        <div class="call-card">
+        <div class="call-top">
+          <span class="call-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
+          <div><b>Paws &amp; Progress Dog Training</b><span class="call-sub">Missed call answered by the AI receptionist</span></div>
+        </div>
+        <div class="player">
+          <button type="button" class="play" aria-label="Play the example call" aria-pressed="false">
+            <svg class="i-play" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+            <svg class="i-pause" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"/></svg>
+          </button>
+          <div class="track">
+            <input type="range" class="seek" min="0" max="81.51" step="0.1" value="0" aria-label="Position in the call">
+            <div class="times"><span class="cur">0:00</span><span>1:22</span></div>
+          </div>
+        </div>
+        <audio preload="none" src="assets/audio/ai-receptionist-demo.mp3"></audio>
+        <ol class="transcript" aria-label="Call transcript">
+            <li class="ln ai" data-t="0.6"><button type="button" aria-label="Play from here"><span class="who">AI receptionist</span><span class="say">Hi, you've reached Paws and Progress Dog Training. Sam's with a client at the moment, so I'm their AI assistant, and this call is transcribed so they can call you back. How can I help?</span></button></li>
+            <li class="ln caller" data-t="12.25"><button type="button" aria-label="Play from here"><span class="who">Caller</span><span class="say">Oh, hiya. Yeah, I've just got a cocker spaniel puppy, and I wanted to ask about your puppy classes.</span></button></li>
+            <li class="ln ai" data-t="17.09"><button type="button" aria-label="Play from here"><span class="who">AI receptionist</span><span class="say">Oh, congratulations! What's your puppy called, and how old is she?</span></button></li>
+            <li class="ln caller" data-t="21.65"><button type="button" aria-label="Play from here"><span class="who">Caller</span><span class="say">She's called Bonnie. She's eleven weeks.</span></button></li>
+            <li class="ln ai" data-t="23.85"><button type="button" aria-label="Play from here"><span class="who">AI receptionist</span><span class="say">Aw, lovely. So, our puppy course runs for six weeks, on Saturday mornings in Wisbech, and it's £120, which Sam will confirm. Bonnie can join once she's had her second jab. Is there anything in particular you'd like help with?</span></button></li>
+            <li class="ln caller" data-t="40.22"><button type="button" aria-label="Play from here"><span class="who">Caller</span><span class="say">Mainly the biting, to be honest. And she pulls like mad on the lead.</span></button></li>
+            <li class="ln ai" data-t="44.16"><button type="button" aria-label="Play from here"><span class="who">AI receptionist</span><span class="say">That's really common at her age, and it's exactly what the course covers. Can I take your name, and is this the best number for Sam to call you back on?</span></button></li>
+            <li class="ln caller" data-t="53.0"><button type="button" aria-label="Play from here"><span class="who">Caller</span><span class="say">Yeah, it's Tom. Tom Clarke. And yeah, this number's fine.</span></button></li>
+            <li class="ln ai" data-t="56.16"><button type="button" aria-label="Play from here"><span class="who">AI receptionist</span><span class="say">Thanks, Tom. And when's a good time for Sam to ring you?</span></button></li>
+            <li class="ln caller" data-t="60.0"><button type="button" aria-label="Play from here"><span class="who">Caller</span><span class="say">Any time after five, really.</span></button></li>
+            <li class="ln ai" data-t="61.87"><button type="button" aria-label="Play from here"><span class="who">AI receptionist</span><span class="say">Perfect. I'll pass all of that on to Sam now, and they'll give you a call after five. Is there anything else I can help with?</span></button></li>
+            <li class="ln caller" data-t="69.63"><button type="button" aria-label="Play from here"><span class="who">Caller</span><span class="say">No, that's brilliant. Thank you.</span></button></li>
+            <li class="ln ai" data-t="71.34"><button type="button" aria-label="Play from here"><span class="who">AI receptionist</span><span class="say">You're welcome, Tom. Give Bonnie a fuss from us. Bye for now!</span></button></li>
+        </ol>
+        <p class="demo-note">Example call with a made-up business and caller. Both voices are AI. Since this was recorded, the AI receptionist's opening line also says it's an AI assistant and that the call is transcribed so Sam can call back.</p>
+      </div>
+        <aside class="summary-card" aria-labelledby="sum-h">
+        <p class="sum-kicker">A few seconds after the call, Sam gets a summary like this (illustration)</p>
+        <div class="sms">
+          <p class="sms-from" id="sum-h">Never Miss a Lead</p>
+          <p><b>New enquiry: Tom Clarke</b>, <span style="white-space:nowrap">07700 900555</span></p>
+          <p>Cocker spaniel puppy, Bonnie, 11 weeks. Interested in the puppy course. Wants help with biting and lead pulling.</p>
+          <p><b>Call back:</b> after 5pm</p>
+          <p class="sms-link">Listen and reply: my.bigbark.media</p>
+        </div>
+        <ul class="sum-points">
+          <li>Answers in your business's name, 24/7</li>
+          <li>Instructed to use only your info: classes, prices, area</li>
+          <li>Takes their details and when to call back</li>
+        </ul>
+        <a class="btn btn-go" data-pilot="ai" href="#plans">Claim an AI Receptionist spot</a>
+      </aside>
+      </div>
+    </div>
+    <div class="panel" id="panel-smart" role="tabpanel" aria-labelledby="tab-smart">
+      <div class="see-grid">
+        <div class="st-phone" aria-label="Example text conversation">
+          <div class="st-top"><span class="st-name">Paws &amp; Progress</span><span class="st-sub">Texts to your Never Miss a Lead number</span></div>
+          <div class="st-missed"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 1l-6 6M17 1l6 6"/><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Missed call, 9:41pm</div>
+          <ol class="st-thread">
+              <li class="st-msg sys"><p>Hi, it's Paws &amp; Progress. Sorry we missed your call. How can we help? Reply STOP to opt out.</p><span class="meta">Auto-text · 9:41pm</span></li>
+              <li class="st-msg in"><p>Hi! Do you do 1-2-1s? My rescue lurcher pulls like mad. We're in March</p><span class="meta">9:43pm</span></li>
+              <li class="st-msg ai"><p>Paws &amp; Progress: Yes! 1-2-1s at your home are £45, or 4 for £160, and March is in our area. Can I take your name?</p><span class="meta">AI assistant · 9:43pm</span><span class="st-tag"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Used your prices and area</span></li>
+              <li class="st-msg in"><p>Lucy. Could Sam ring me tomorrow after 12?</p><span class="meta">9:45pm</span></li>
+              <li class="st-msg ai"><p>Paws &amp; Progress: Thanks, Lucy. I've passed your details and that time on to Sam, who'll be in touch.</p><span class="meta">AI assistant · 9:45pm</span><span class="st-tag"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Took their details for a call-back</span></li>
+          </ol>
+        </div>
+        <aside class="summary-card" aria-labelledby="sum-smart-h">
+          <p class="sum-kicker" id="sum-smart-h">When Sam checks in, the lead looks like this (illustration)</p>
+          <div class="sms">
+            <p class="sms-from">Never Miss a Lead</p>
+            <p><b>New lead: Lucy</b>, <span style="white-space:nowrap">07700 900812</span></p>
+            <p>Rescue lurcher, pulls on the lead. Lives in March. Interested in 4 × 1-2-1 (£160).</p>
+            <p><b>Call back:</b> today after 12</p>
+          </div>
+          <ul class="sum-points">
+            <li>Replies in seconds, day or night</li>
+            <li>Instructed to use only your prices, classes and area</li>
+            <li>Hands bites and complaints straight to you</li>
+          </ul>
+          <a class="btn btn-go" data-pilot="smart" href="#plans">Claim a Smart Text spot</a>
+        </aside>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="calculator" aria-labelledby="calc-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Calculator</p>
+      <h2 id="calc-h">What are missed calls <em class="hl">costing you</em>?</h2>
+      <p class="lede">Put in your own numbers. Be honest, and if you're not sure, keep it low.</p>
+    </div>
+    <div class="calc">
+      <form id="roi" onsubmit="return false" aria-describedby="calc-note">
+        <div class="field">
+          <label for="r-calls">Calls you miss in a week <output for="r-calls" id="o-calls">5</output></label>
+          <input type="range" id="r-calls" min="1" max="40" step="1" value="5">
+          <p class="hint">Check your recent calls list. Count the ones you didn't answer.</p>
+        </div>
+        <div class="field">
+          <label for="r-gone">Missed callers who don't try again <output for="r-gone" id="o-gone">60%</output></label>
+          <input type="range" id="r-gone" min="10" max="100" step="5" value="60">
+          <p class="hint">Many callers ring the next business instead of leaving a voicemail. 60% is our assumption, not a measured figure: change it to match your experience.</p>
+        </div>
+        <div class="field">
+          <label for="r-conv">Enquiries that become clients <output for="r-conv" id="o-conv">30%</output></label>
+          <input type="range" id="r-conv" min="5" max="100" step="5" value="30">
+        </div>
+        <div class="field">
+          <label for="r-val">Average value of a new client</label>
+          <div class="money"><span aria-hidden="true">£</span><input id="r-val" type="number" inputmode="numeric" min="0" step="10" value="250" aria-describedby="val-hint"></div>
+          <p class="hint" id="val-hint">What a typical client spends with you: a course, a package of 1-2-1s, or a few months of walks.</p>
+        </div>
+      </form>
+      <div class="result" aria-live="polite">
+        <div>
+          <div class="big" id="o-lost">£975</div>
+          <div class="lbl">estimated lost each month</div>
+        </div>
+        <dl>
+          <div><dt>Callers who don't come back</dt><dd id="o-lostcallers">13 a month</dd></div>
+          <div><dt>Clients that would have booked</dt><dd id="o-lostclients">3.9 a month</dd></div>
+        </dl>
+        <p class="payback" id="o-payback">One recovered client covers 5 months of Text-Back.</p>
+        <p class="payback" style="margin-top:.4rem"><a href="#plans">See the pilot prices</a></p>
+        <p class="small" id="calc-note">An estimate based only on the numbers you enter, not a promise. Uses 4.33 weeks per month. Text-Back is £49 a month.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -243,6 +388,77 @@
   });
 
   document.querySelectorAll('[data-ext]').forEach(function (a) { a.href = wa; a.target = '_blank'; a.rel = 'noopener'; });
+})();
+</script>
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  // ROI calculator
+  var $ = function(id){ return document.getElementById(id); };
+  var gbp = function(v){ return '£' + Math.round(v).toLocaleString('en-GB'); };
+  var WEEKS = 52 / 12, PRICE = 49;
+  function calc(){
+    var calls = +$('r-calls').value, gone = +$('r-gone').value / 100,
+        conv = +$('r-conv').value / 100, val = Math.max(0, +$('r-val').value || 0);
+    $('o-calls').textContent = calls;
+    $('o-gone').textContent = Math.round(gone * 100) + '%';
+    $('o-conv').textContent = Math.round(conv * 100) + '%';
+    var lostCallers = calls * WEEKS * gone;
+    var lostClients = lostCallers * conv;
+    $('o-lost').textContent = gbp(lostClients * val);
+    $('o-lostcallers').textContent = Math.round(lostCallers) + ' a month';
+    $('o-lostclients').textContent = (Math.round(lostClients * 10) / 10) + ' a month';
+    var months = Math.floor(val / PRICE);
+    $('o-payback').textContent = months >= 1
+      ? 'One recovered client covers ' + months + (months === 1 ? ' month' : ' months') + ' of Text-Back.'
+      : 'At this client value, it takes more than one recovered client to cover a month of Text-Back.';
+  }
+  ['r-calls','r-gone','r-conv','r-val'].forEach(function(id){ $(id).addEventListener('input', calc); });
+  calc();
+})();
+</script>
+<script>
+(function(){
+  var root=document.getElementById('listen'); if(!root) return;
+  var audio=root.querySelector('audio'), btn=root.querySelector('.play'), seek=root.querySelector('.seek'), cur=root.querySelector('.cur');
+  var lines=[].slice.call(root.querySelectorAll('.ln')), list=root.querySelector('.transcript'), active=-1, dragging=false;
+  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+':'+('0'+s%60).slice(-2);}
+  function setActive(i){
+    if(i===active) return; active=i;
+    lines.forEach(function(li,j){li.classList.toggle('on',j===i);li.classList.toggle('past',j<i);});
+    var li=lines[i]; if(li && !audio.paused){ var top=li.offsetTop-list.offsetTop-list.clientHeight/2+li.clientHeight/2; list.scrollTo({top:top,behavior:'smooth'}); }
+  }
+  function sync(){
+    var t=audio.currentTime, i=-1;
+    lines.forEach(function(li,j){ if(t>=parseFloat(li.dataset.t)-0.05) i=j; });
+    setActive(i); if(!dragging) seek.value=t; cur.textContent=fmt(t);
+  }
+  function setPlaying(p){ btn.setAttribute('aria-pressed',p?'true':'false'); btn.setAttribute('aria-label',p?'Pause the example call':'Play the example call'); root.classList.toggle('playing',p); }
+  btn.addEventListener('click',function(){ if(audio.paused){ audio.play(); } else { audio.pause(); } });
+  audio.addEventListener('play',function(){setPlaying(true);});
+  audio.addEventListener('pause',function(){setPlaying(false);});
+  audio.addEventListener('ended',function(){setPlaying(false);});
+  audio.addEventListener('timeupdate',sync);
+  seek.addEventListener('input',function(){dragging=true;cur.textContent=fmt(seek.value);});
+  seek.addEventListener('change',function(){dragging=false;audio.currentTime=parseFloat(seek.value);sync();});
+  lines.forEach(function(li){ li.querySelector('button').addEventListener('click',function(){ audio.currentTime=parseFloat(li.dataset.t); audio.play(); }); });
+})();
+</script>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('#see-it [role=tab]')); if(!tabs.length) return;
+  var see=document.getElementById('see-it'); see.classList.add('js-tabs');
+  function select(t, focus){
+    tabs.forEach(function(x){ var on=x===t; x.setAttribute('aria-selected',on); x.tabIndex=on?0:-1; document.getElementById(x.getAttribute('aria-controls')).hidden=!on; });
+    if(t.id!=='tab-call'){ var a=document.querySelector('#listen audio'); if(a && !a.paused) a.pause(); }
+    if(focus) t.focus();
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){select(t);});
+    t.addEventListener('keydown',function(e){ var n=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0; if(n){e.preventDefault(); select(tabs[(i+n+tabs.length)%tabs.length],true);} });
+  });
+  select(tabs[0]);
+  if(location.hash==='#smart-text') select(tabs[1]);
 })();
 </script>
 </body>
