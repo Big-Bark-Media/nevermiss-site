@@ -15,6 +15,13 @@ window.NMAL_CONFIG = {
     smart_now: 'https://buy.stripe.com/00w00k6Ms4pa32r8GC9IQ0u',
     ai_now: 'https://buy.stripe.com/14AeVe1s83l60Uj4qm9IQ0s'
   },
+  // Pilot page (pilot.html, unlisted): the same 7-day trial links; the page adds ?client_reference_id=pilot.
+  // '#' = not ready, the button says "WhatsApp us for this plan".
+  pilotLinks: {
+    textback: 'https://buy.stripe.com/9B68wQ7QwbRCeL92ie9IQ0y',
+    smart: 'https://buy.stripe.com/bJe4gAfiY2h27iHf509IQ0z',
+    ai: '#'
+  },
   whatsappUrl: 'https://wa.me/447822882162',
   email: 'info@bigbark.media'
 };
