@@ -58,12 +58,12 @@
   <div class="wrap">
     <div class="sec-head"><p class="eyebrow">The pilot</p><h2 id="deal-h">What you get, and what we <em class="hl">ask</em></h2></div>
     <ol class="steps-list">
-      <li><b>50% off your first 3 monthly payments.</b> Your half price starts the day your number goes live, not the day you sign up. After 3 months it's the normal monthly price, and you can cancel any time.</li>
+      <li><b>50% off your first 3 monthly payments.</b> Your first half-price payment is taken when you sign up, and the next two are half price too. After that it's the normal monthly price, and you can cancel any time.</li>
       <li><b>We set everything up for you</b> behind the scenes. You fill in a short form (about 5 minutes), we register your number, and you do three quick jobs when it's ready (about 15 minutes).</li>
       <li><b>In return, honest feedback</b> on how the set-up went: a few questions by WhatsApp or email. No calls.</li>
     </ol>
     <div class="note-box">
-      <p><b>The checkout page will mention a free trial.</b> As a pilot you skip the trial and go straight onto the half price, which starts when your number is live. Nothing is charged before then.</p>
+      <p><b>Your pilot code is added for you</b> when you click a plan below, so the checkout shows the half price. If it says the code is no longer valid, all 5 spots have gone.</p>
     </div>
   </div>
 </section>
@@ -155,8 +155,10 @@
     var plan = a.getAttribute('data-pilot');
     var url = links[plan];
     if (url && url !== '#') {
-      // The pilot marker: Never Miss a Lead flags these sign-ups as pilots (CRM pre-ticks "Pilot client").
+      // Pilot links have no trial. The promotion code (50% off 3 months, 5 uses) is pre-filled, and the pilot
+      // marker flags the sign-up as a pilot in Never Miss a Lead (CRM shows Pilot).
       var u = new URL(url);
+      if (C.pilotPromoCode) u.searchParams.set('prefilled_promo_code', C.pilotPromoCode);
       u.searchParams.set('client_reference_id', 'pilot');
       a.href = u.toString();
     } else {

@@ -15,13 +15,14 @@ window.NMAL_CONFIG = {
     smart_now: 'https://buy.stripe.com/00w00k6Ms4pa32r8GC9IQ0u',
     ai_now: 'https://buy.stripe.com/14AeVe1s83l60Uj4qm9IQ0s'
   },
-  // Pilot page (pilot.html, unlisted): the same 7-day trial links; the page adds ?client_reference_id=pilot.
-  // '#' = not ready, the button says "WhatsApp us for this plan".
+  // Pilot page (pilot.html, unlisted): pilot-only links with NO trial (pilots pay half price from sign-up).
+  // The page adds ?prefilled_promo_code=<pilotPromoCode>&client_reference_id=pilot. '#' = WhatsApp instead.
   pilotLinks: {
-    textback: 'https://buy.stripe.com/9B68wQ7QwbRCeL92ie9IQ0y',
-    smart: 'https://buy.stripe.com/bJe4gAfiY2h27iHf509IQ0z',
-    ai: '#'
+    textback: 'https://buy.stripe.com/eVq14ob2I7BmgTh0a69IQ0A',
+    smart: 'https://buy.stripe.com/9B614o3Ag1cYauTf509IQ0B',
+    ai: 'https://buy.stripe.com/aFa00keeU5te6eD8GC9IQ0C'
   },
+  pilotPromoCode: 'MENTEEPILOT',
   whatsappUrl: 'https://wa.me/447822882162',
   email: 'info@bigbark.media'
 };
