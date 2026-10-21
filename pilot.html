@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Rubik:wght@400;500&display=swap" rel="stylesheet">
-<script src="config.js?v=20261021-1515"></script>
+<script src="config.js?v=20261021-1630"></script>
 <link rel="stylesheet" href="assets/bigbark.css">
 <style>
   .pilot-strip { display:inline-block; background:var(--pink,#E6007E); color:#fff; font-weight:600; border-radius:999px; padding:.35rem .9rem; font-size:.9rem; margin-bottom:1rem }
@@ -23,6 +23,15 @@
   .plan .then { font-size:.9rem; opacity:.8; margin:.25rem 0 .75rem }
   .steps-list { max-width:46rem; margin:0; padding-left:1.25rem; line-height:1.7 }
   .steps-list li { margin:.5rem 0 }
+  .r2 { max-width:34rem; display:grid; gap:.9rem }
+  .r2 label { display:grid; gap:.3rem; font-weight:600; font-size:.95rem }
+  .r2 input, .r2 select { font:inherit; font-weight:400; padding:.7rem .85rem; border:2px solid #d6d7e2; border-radius:10px; background:#fff; color:#1a1a2e }
+  .r2 .opt { font-weight:400; opacity:.7 }
+  .r2 .hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden }
+  .r2-err { color:#c8323a; font-weight:600; margin:0; min-height:0 }
+  .r2-err:empty { display:none }
+  .r2-small { font-size:.85rem; opacity:.75; margin:0 }
+  #r2-done { margin:0 }
   .note-box { max-width:46rem; margin:1.5rem 0 0; padding:1rem 1.25rem; border-radius:14px; background:rgba(230,0,126,.08); border:1px solid rgba(230,0,126,.25) }
 </style>
 </head>
@@ -39,14 +48,14 @@
 <section class="hero" aria-labelledby="hero-h">
   <div class="wrap">
     <div>
-      <span class="pilot-strip">Pilot offer · 5 spots</span>
+      <span class="pilot-strip" id="spots">Pilot offer · 5 spots</span>
       <h1 id="hero-h">
         <span>Half price for your first 3 months.</span>
         <span class="gap">Help us shape Never Miss a Lead.</span>
       </h1>
       <p class="lede">When you're mid-session and can't answer, Never Miss a Lead texts the caller in your business's name straight away and sends you an alert, so they hear from you before they ring the next trainer. We're offering 5 pilot spots before we open it up to everyone.</p>
       <div class="cta-row">
-        <a class="btn btn-go" href="#plans">Claim a pilot spot</a>
+        <a class="btn btn-go" id="hero-cta" href="#plans">Claim a pilot spot</a>
         <a class="btn btn-ghost" href="./" target="_blank" rel="noopener">See how it works</a>
       </div>
       <p class="price-line"><span><strong>50% off</strong> 3 monthly payments</span><span>Set up for you</span><span>No minimum term</span><span>Cancel any time</span></p>
@@ -74,6 +83,9 @@
       <p class="eyebrow">Pick your plan</p>
       <h2 id="price-h">Pilot <em class="hl">prices</em></h2>
       <p class="lede">The 5 spots go to the first 5 who sign up. Not sure which plan? Most trainers start with Smart Text.</p>
+    </div>
+    <div class="note-box" id="full-banner" hidden style="margin:0 auto 1.5rem">
+      <p><b>All 5 pilot spots have gone.</b> Thank you for the interest! We're running a second round once the first pilots are set up. <a href="#round2">Join the round 2 list</a> and you'll hear first.</p>
     </div>
     <div class="plans">
       <article class="plan" aria-labelledby="p1">
@@ -133,6 +145,29 @@
     <p class="vat-line">Questions? <a data-ext="whatsapp" href="#">WhatsApp us</a> or email <a href="mailto:info@bigbark.media">info@bigbark.media</a>.</p>
   </div>
 </section>
+
+<section id="round2" aria-labelledby="r2-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Round 2</p>
+      <h2 id="r2-h">Missed out, or <em class="hl">not ready</em> yet?</h2>
+      <p class="lede">We'll run a second pilot round once the first pilots are set up. Leave your details and you'll hear about it first, before anyone else.</p>
+    </div>
+    <form id="r2-form" class="r2" novalidate>
+      <label>Your name<input name="name" type="text" autocomplete="name" required maxlength="120"></label>
+      <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+      <label>Mobile <span class="opt">(optional)</span><input name="phone" type="tel" autocomplete="tel" maxlength="40"></label>
+      <label>Business name <span class="opt">(optional)</span><input name="business" type="text" autocomplete="organization" maxlength="150"></label>
+      <label>Which plan interests you?<select name="plan"><option value="unsure">Not sure yet</option><option value="textback">Text-Back</option><option value="smart">Smart Text</option><option value="ai">AI Receptionist</option></select></label>
+      <div class="hp" aria-hidden="true"><label>Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+      <input type="hidden" name="reason" value="not_ready">
+      <p class="r2-err" id="r2-err" role="alert"></p>
+      <button class="btn btn-go" type="submit">Put me on the round 2 list</button>
+      <p class="r2-small">We'll only use your details to tell you about Never Miss a Lead. See our <a href="privacy.html">privacy notice</a>.</p>
+    </form>
+    <div class="note-box" id="r2-done" hidden><p><b>You're on the list.</b> We'll email you as soon as round 2 opens. Questions in the meantime? <a data-ext="whatsapp" href="#">WhatsApp us</a>.</p></div>
+  </div>
+</section>
 </main>
 
 <footer>
@@ -168,6 +203,45 @@
     }
     a.rel = 'noopener';
   });
+  // Spots left (counts only). If the pilot's full, the plan buttons go to the round 2 list instead of checkout.
+  if (C.apiBase) {
+    fetch(C.apiBase.replace(/\/$/, '') + '/api/pilot/status', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (st) {
+      if (!st || typeof st.limit !== 'number') return;
+      var strip = document.getElementById('spots');
+      if (!st.full) { strip.textContent = 'Pilot offer · ' + st.left + ' of ' + st.limit + ' spots left'; return; }
+      strip.textContent = 'Pilot full · round 2 list open';
+      document.getElementById('full-banner').hidden = false;
+      var hero = document.getElementById('hero-cta');
+      hero.textContent = 'Join the round 2 list'; hero.href = '#round2';
+      document.querySelector('#r2-form [name=reason]').value = 'full';
+      document.querySelectorAll('[data-pilot]').forEach(function (a) {
+        var plan = a.getAttribute('data-pilot');
+        a.href = '#round2'; a.removeAttribute('target');
+        a.textContent = 'Join the round 2 list';
+        a.addEventListener('click', function () { document.querySelector('#r2-form [name=plan]').value = plan; });
+      });
+    }).catch(function () {});
+  }
+
+  // Round 2 list: goes to the Big Bark Media CRM (Form inbox + the round 2 list on the Never Miss a Lead page).
+  var f = document.getElementById('r2-form');
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var err = document.getElementById('r2-err'); err.textContent = '';
+    var data = {}; new FormData(f).forEach(function (v, k) { data[k] = String(v); });
+    if (!data.name.trim()) { err.textContent = 'Please add your name.'; return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email.trim())) { err.textContent = 'Please add a valid email address.'; return; }
+    var btn = f.querySelector('button'); btn.disabled = true; btn.textContent = 'Sending…';
+    fetch(C.interestUrl || 'https://bbm-crm.dbgs-dashboard.workers.dev/api/public/nmal-interest', { method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json' }, body: JSON.stringify(data) })
+      .then(function (r) { return r.json().catch(function () { return {}; }); })
+      .then(function (j) {
+        if (j && j.ok) { f.hidden = true; document.getElementById('r2-done').hidden = false; return; }
+        btn.disabled = false; btn.textContent = 'Put me on the round 2 list';
+        err.textContent = (j && j.error) || "That didn't send. Please try again, or email info@bigbark.media.";
+      })
+      .catch(function () { btn.disabled = false; btn.textContent = 'Put me on the round 2 list'; err.textContent = "That didn't send. Please check your connection and try again, or email info@bigbark.media."; });
+  });
+
   document.querySelectorAll('[data-ext]').forEach(function (a) { a.href = wa; a.target = '_blank'; a.rel = 'noopener'; });
 })();
 </script>

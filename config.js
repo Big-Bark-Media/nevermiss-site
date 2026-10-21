@@ -23,6 +23,8 @@ window.NMAL_CONFIG = {
     ai: 'https://buy.stripe.com/aFa00keeU5te6eD8GC9IQ0C'
   },
   pilotPromoCode: 'MENTEEPILOT',
+  // Round 2 list sign-ups (pilot page form) go to the Big Bark Media CRM.
+  interestUrl: 'https://bbm-crm.dbgs-dashboard.workers.dev/api/public/nmal-interest',
   whatsappUrl: 'https://wa.me/447822882162',
   email: 'info@bigbark.media'
 };
