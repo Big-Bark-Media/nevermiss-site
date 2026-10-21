@@ -80,7 +80,7 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
       </div></li>
       <li><div>
         <h2>You test it with a missed call</h2>
-        <p>Ask someone to ring your mobile and don't answer. Check the text reaches them and your alert comes through, then check your business info in the dashboard. Your 7-day free trial starts when your number goes live.</p>
+        <p>Ask someone to ring your mobile and don't answer. Check the text reaches them and your alert comes through, then check your business info in the dashboard. <span id="trial-line">Your 7-day free trial starts when your number goes live.</span></p>
       </div></li>
     </ol>
     <div class="box">
@@ -102,6 +102,15 @@ input:focus,select:focus,textarea:focus{border-color:#E6007E!important;outline-c
 var C = window.NMAL_CONFIG || {};
 if (C.whatsappUrl) document.getElementById('wa').href = C.whatsappUrl;
 if (C.email) document.getElementById('email').href = 'mailto:' + C.email;
+</script>
+<script>
+// Which checkout they came from (set by the sales or pilot page): pilot and pay-now clients have no free trial.
+(function(){ try {
+  var k = localStorage.getItem('nmal_checkout'), t = document.getElementById('trial-line');
+  if (!t) return;
+  if (k === 'pilot') t.textContent = "You're on the pilot price: 50% off your first 3 monthly payments, with no free trial to keep track of.";
+  else if (k === 'now') t.textContent = "You've paid for your first month, so there's no trial to keep track of.";
+} catch (e) {} })();
 </script>
 </body>
 </html>

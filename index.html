@@ -450,7 +450,11 @@
   // CTA links: Stripe link if set, else WhatsApp with the plan pre-filled
   document.querySelectorAll('[data-link]').forEach(function(a){
     var url = L[a.getAttribute('data-link')];
-    if (url && url !== '#') { a.href = url; }
+    if (url && url !== '#') {
+      a.href = url;
+      // Lets the onboarding and thank-you pages say "free trial" or "paid" correctly.
+      a.addEventListener('click', function () { try { localStorage.setItem('nmal_checkout', /_now$/.test(a.getAttribute('data-link')) ? 'now' : 'trial'); } catch (e) {} });
+    }
     else {
       var plan = { textback: 'Text-Back', smart: 'Smart Text', ai: 'AI Receptionist' }[(a.getAttribute('data-link') || '').split('_')[0]] || '';
       a.href = wa + '?text=' + encodeURIComponent('Hi! I\'m interested in Never Miss a Lead' + (plan ? ' (' + plan + ')' : '') + '.');
